@@ -35,14 +35,15 @@ export async function getSupabaseSettings() {
     catSchoolUrl:       hero?.cat_school_url     ?? undefined,
     catHotelUrl:        hero?.cat_hotel_url      ?? undefined,
     catIndustrialUrl:   hero?.cat_industrial_url ?? undefined,
-    logo_url:  map.logo_url || undefined,
-    phone:     map.phone    || undefined,
-    email:     map.email    || undefined,
-    address:   map.address  || undefined,
-    tagline:   map.tagline  || undefined,
-    companyName: map.company_name || undefined,
-    instagram: map.instagram || undefined,
-    facebook:  map.facebook  || undefined,
+    logo_url:     map.logo_url      || undefined,
+    phone:        map.phone         || undefined,
+    email:        map.email         || undefined,
+    address:      map.address       || undefined,
+    tagline:      map.tagline       || undefined,
+    companyName:  map.company_name  || undefined,
+    instagram:    map.instagram     || undefined,
+    facebook:     map.facebook      || undefined,
+    mapEmbedUrl:  map.map_embed_url || undefined,
   };
 }
 

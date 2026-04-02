@@ -11,6 +11,7 @@ interface ContactProps {
     address?: string;
     hours?: string;
     mapUrl?: string;
+    mapEmbedUrl?: string;
   } | null;
 }
 
@@ -29,6 +30,7 @@ export default function Contact({ settings }: ContactProps) {
     addressShort: defaultContact.addressShort,
     hours:        settings?.hours        ?? defaultContact.hours,
     mapUrl:       settings?.mapUrl       ?? defaultContact.mapUrl,
+    mapEmbedUrl:  settings?.mapEmbedUrl  ?? '',
   };
 
   const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', type: '', message: '' });
@@ -84,16 +86,31 @@ export default function Contact({ settings }: ContactProps) {
                 </div>
               </div>
             ))}
-            <div className="w-full h-48 bg-navy rounded-2xl flex items-center justify-center overflow-hidden relative mt-2">
-              <div aria-hidden="true" className="absolute inset-0 opacity-10"
-                style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,0.5) 20px, rgba(201,168,76,0.5) 21px)' }} />
-              <div className="text-center relative">
-                <MapPin className="w-8 h-8 text-gold mx-auto mb-2" />
-                <p className="text-white font-semibold text-sm">{contact.addressShort}</p>
-                <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer"
-                  className="text-gold text-xs mt-1 hover:underline block">View on Google Maps →</a>
+            {contact.mapEmbedUrl ? (
+              <div className="w-full h-48 rounded-2xl overflow-hidden mt-2 border border-navy/20">
+                <iframe
+                  src={contact.mapEmbedUrl}
+                  width="100%"
+                  height="192"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Our location on Google Maps"
+                />
               </div>
-            </div>
+            ) : (
+              <div className="w-full h-48 bg-navy rounded-2xl flex items-center justify-center overflow-hidden relative mt-2">
+                <div aria-hidden="true" className="absolute inset-0 opacity-10"
+                  style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,0.5) 20px, rgba(201,168,76,0.5) 21px)' }} />
+                <div className="text-center relative">
+                  <MapPin className="w-8 h-8 text-gold mx-auto mb-2" />
+                  <p className="text-white font-semibold text-sm">{contact.addressShort}</p>
+                  <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-gold text-xs mt-1 hover:underline block">View on Google Maps →</a>
+                </div>
+              </div>
+            )}
           </div>
 
           <form data-aos="fade-left" onSubmit={handleSubmit} className="lg:col-span-3 bg-white rounded-2xl shadow-sm p-8 space-y-5">

@@ -15,6 +15,7 @@ interface Settings {
   instagram: string;
   facebook: string;
   footer_text: string;
+  map_embed_url: string;
 }
 
 const DEFAULTS: Settings = {
@@ -28,6 +29,7 @@ const DEFAULTS: Settings = {
   instagram: 'https://instagram.com/kahglobal',
   facebook: 'https://facebook.com/kahglobal',
   footer_text: '© 2025 Kah Global General Trading LLC. All rights reserved.',
+  map_embed_url: '',
 };
 
 type Row = { key: string; value: string };
@@ -112,6 +114,34 @@ export default function SettingsSection() {
         <Field label="Email Address" value={data.email} onChange={(v) => set('email', v)} placeholder="info@kahglobal.ae" />
         <Field label="WhatsApp Number (digits only, no spaces)" value={data.whatsapp} onChange={(v) => set('whatsapp', v)} placeholder="971551234567" />
         <Field label="Office Address" value={data.address} onChange={(v) => set('address', v)} textarea />
+      </Card>
+
+      <Card title="Google Maps Pin">
+        <p className="text-xs text-gray-500 mb-3 leading-relaxed">
+          1. Go to <strong>Google Maps</strong> and search your location.<br />
+          2. Click <strong>Share</strong> → <strong>Embed a map</strong> → Copy the iframe code.<br />
+          3. Paste only the <strong>src="..."</strong> URL (starting with <code className="bg-gray-100 px-1 rounded">https://www.google.com/maps/embed</code>) below.
+        </p>
+        <Field
+          label="Google Maps Embed URL"
+          value={data.map_embed_url}
+          onChange={(v) => set('map_embed_url', v)}
+          placeholder="https://www.google.com/maps/embed?pb=..."
+        />
+        {data.map_embed_url && (
+          <div className="mt-3 rounded-xl overflow-hidden border border-gray-200" style={{ height: 200 }}>
+            <iframe
+              src={data.map_embed_url}
+              width="100%"
+              height="200"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Map preview"
+            />
+          </div>
+        )}
       </Card>
 
       <Card title="Social Media Links">
