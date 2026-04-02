@@ -20,8 +20,8 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError('File too large. Max 5 MB.');
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File too large. Max 10 MB.');
       return;
     }
 
@@ -29,20 +29,36 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
     setError('');
 
     try {
-      const ext = file.name.split('.').pop();
-      const filename = `${path}-${Date.now()}.${ext}`;
+      // Sanitize filename — remove spaces and special chars
+      const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg';
+      const safePath = path.replace(/[^a-zA-Z0-9/_-]/g, '-');
+      const filename = `${safePath}-${Date.now()}.${ext}`;
 
       const { error: uploadError } = await supabase.storage
         .from(bucket)
-        .upload(filename, file, { upsert: true });
+        .upload(filename, file, {
+          upsert: true,
+          contentType: file.type,
+          cacheControl: '3600',
+        });
 
-      if (uploadError) throw uploadError;
+      if (uploadError) {
+        // Provide clearer error messages
+        if (uploadError.message.includes('Bucket not found')) {
+          throw new Error('Storage bucket not found. Run npm run migrate to create it.');
+        }
+        if (uploadError.message.includes('not allowed') || uploadError.message.includes('policy')) {
+          throw new Error('Upload blocked by storage policy. Run the storage fix SQL in Supabase.');
+        }
+        throw uploadError;
+      }
 
       const { data } = supabase.storage.from(bucket).getPublicUrl(filename);
       setPreview(data.publicUrl);
       onUploaded(data.publicUrl);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Upload failed');
+      setError(err instanceof Error ? err.message : 'Upload failed — check browser console for details');
+      console.error('[ImageUpload] Error:', err);
     } finally {
       setUploading(false);
     }
@@ -62,7 +78,6 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
         <div className="mb-3 relative rounded-xl overflow-hidden border border-gray-200 bg-gray-50 group" style={{ height: 140 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={preview} alt="preview" className="w-full h-full object-contain p-2" />
-          {/* Remove button overlay */}
           <button
             type="button"
             onClick={removeImage}
@@ -77,8 +92,12 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
       )}
 
       <div
-        onClick={() => inputRef.current?.click()}
-        className="border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer hover:border-[#C9A84C] hover:bg-[#C9A84C]/5 transition-all duration-200"
+        onClick={() => !uploading && inputRef.current?.click()}
+        className={`border-2 border-dashed rounded-xl p-5 text-center transition-all duration-200 ${
+          uploading
+            ? 'border-[#C9A84C] bg-[#C9A84C]/5 cursor-wait'
+            : 'border-gray-300 cursor-pointer hover:border-[#C9A84C] hover:bg-[#C9A84C]/5'
+        }`}
       >
         {uploading ? (
           <div className="flex items-center justify-center gap-2 text-[#C9A84C] font-semibold text-sm">
@@ -94,7 +113,7 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <p className="text-sm text-gray-500">{preview ? 'Click to replace image' : 'Click to upload image'}</p>
-            <p className="text-xs text-gray-400 mt-0.5">PNG, JPG, WebP · Max 5 MB</p>
+            <p className="text-xs text-gray-400 mt-0.5">PNG, JPG, WebP · Max 10 MB</p>
           </>
         )}
       </div>
@@ -107,7 +126,14 @@ export default function ImageUpload({ bucket, path, currentUrl, label, onUploade
         onChange={handleFile}
       />
 
-      {error && <p className="text-red-500 text-xs mt-1.5">{error}</p>}
+      {error && (
+        <div className="mt-2 flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          <svg className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-red-600 text-xs">{error}</p>
+        </div>
+      )}
     </div>
   );
 }
