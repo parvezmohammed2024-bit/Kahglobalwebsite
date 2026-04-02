@@ -36,31 +36,29 @@ export default function Navbar({ logoUrl, companyName = 'Kah Global' }: NavbarPr
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2.5 flex-shrink-0">
+          <a href="#home" className="flex items-center gap-3 flex-shrink-0">
             {showImage ? (
               <Image
                 src={logoUrl}
                 alt={`${companyName} — Official Logo`}
-                width={140}
-                height={56}
-                className="h-10 w-auto object-contain"
+                width={180}
+                height={72}
+                className="h-14 w-auto object-contain"
                 priority
                 onError={() => setImgError(true)}
               />
             ) : (
-              /* Text fallback when no logo uploaded */
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 bg-[#0A1F44] rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#C9A84C] font-black text-sm leading-none">KG</span>
-                </div>
-                <span className="text-[#0A1F44] font-extrabold text-lg leading-none hidden sm:block">
-                  {companyName}
-                </span>
+              <div className="w-10 h-10 bg-[#0A1F44] rounded-xl flex items-center justify-center flex-shrink-0">
+                <span className="text-[#C9A84C] font-black text-sm leading-none">KG</span>
               </div>
             )}
+            <div className="flex flex-col leading-tight hidden sm:block">
+              <span className="text-[#0A1F44] font-extrabold text-lg leading-none">{companyName}</span>
+              <span className="text-[#C9A84C] text-[10px] font-semibold tracking-widest uppercase">Uniform Manufacturer</span>
+            </div>
           </a>
 
           {/* Desktop Nav */}
