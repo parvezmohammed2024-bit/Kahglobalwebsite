@@ -62,7 +62,7 @@ export default function Contact({ settings }: ContactProps) {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-gray-50 overflow-hidden">
+    <section id="contact" className="py-24 bg-gray-50 overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" data-aos="fade-up">
           <span className="inline-block bg-navy/5 text-navy font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
@@ -87,12 +87,10 @@ export default function Contact({ settings }: ContactProps) {
               </div>
             ))}
             {contact.mapEmbedUrl ? (
-              <div className="w-full h-48 rounded-2xl overflow-hidden mt-2 border border-navy/20">
+              <div className="w-full rounded-2xl overflow-hidden mt-2 border border-navy/20" style={{ height: '220px' }}>
                 <iframe
                   src={contact.mapEmbedUrl}
-                  width="100%"
-                  height="192"
-                  style={{ border: 0 }}
+                  style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

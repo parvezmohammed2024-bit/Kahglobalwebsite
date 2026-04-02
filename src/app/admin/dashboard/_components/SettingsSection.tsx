@@ -132,9 +132,7 @@ export default function SettingsSection() {
           <div className="mt-3 rounded-xl overflow-hidden border border-gray-200" style={{ height: 200 }}>
             <iframe
               src={data.map_embed_url}
-              width="100%"
-              height="200"
-              style={{ border: 0 }}
+              style={{ width: '100%', height: '100%', border: 0, display: 'block' }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
