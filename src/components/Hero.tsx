@@ -46,7 +46,7 @@ export default function Hero({ settings }: HeroProps) {
       {heroVideo && (
         <video
           src={heroVideo}
-          autoPlay muted loop playsInline
+          autoPlay muted loop playsInline preload="none"
           className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none"
         />
       )}
