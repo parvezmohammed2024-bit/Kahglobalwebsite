@@ -54,7 +54,10 @@ export default async function Home() {
   return (
     <>
       <AOSInit />
-      <Navbar />
+      <Navbar
+        logoUrl={settings?.logo_url || settings?.logoUrl || undefined}
+        companyName={settings?.companyName || 'Kah Global'}
+      />
 
       <main>
         <Hero settings={settings} />

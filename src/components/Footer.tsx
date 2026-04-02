@@ -5,6 +5,8 @@ import { company, contact as defaultContact, social, images, footer } from '@/co
 interface FooterProps {
   settings?: {
     companyName?: string;
+    logo_url?: string;
+    logoUrl?: string;
     phone?: string;
     email?: string;
     address?: string;
@@ -44,13 +46,22 @@ export default function Footer({ settings }: FooterProps) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#home" className="inline-block mb-4">
-              <Image
-                src={images.logo}
-                alt={`${company.name} — Official Logo`}
-                width={160} height={64}
-                className="h-14 w-auto object-contain brightness-0 invert"
-                loading="lazy"
-              />
+              {(settings?.logo_url || settings?.logoUrl) ? (
+                <Image
+                  src={settings.logo_url || settings.logoUrl || ''}
+                  alt={`${settings?.companyName ?? company.name} — Official Logo`}
+                  width={160} height={64}
+                  className="h-14 w-auto object-contain brightness-0 invert"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-[#C9A84C] rounded-xl flex items-center justify-center">
+                    <span className="text-white font-black text-sm">KG</span>
+                  </div>
+                  <span className="text-white font-extrabold text-xl">{settings?.companyName ?? company.name}</span>
+                </div>
+              )}
             </a>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">{footer.tagline}</p>
             <div className="flex gap-3">
