@@ -1,111 +1,111 @@
+import Image from 'next/image';
 import { Briefcase, BookOpen, Building2, HardHat, Dumbbell, Scissors } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { products as defaultProducts, productsSection } from '@/config/site.config';
 
-interface Product {
-  icon: LucideIcon;
+const icons: LucideIcon[] = [Briefcase, BookOpen, Building2, HardHat, Dumbbell, Scissors];
+
+interface SanityProduct {
+  _id: string;
   title: string;
   description: string;
+  gradient: string;
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
-const products: Product[] = [
-  {
-    icon: Briefcase,
-    title: 'Corporate Uniforms',
-    description:
-      'Polished, professional uniforms for offices, banks, retail, and service industries. Tailored to reflect your brand identity and dress code requirements.',
-  },
-  {
-    icon: BookOpen,
-    title: 'School Uniforms',
-    description:
-      'Durable, breathable school uniforms for primary and secondary institutions. Consistent quality across bulk orders, with options for custom embroidery.',
-  },
-  {
-    icon: Building2,
-    title: 'Hospitality & Hotel Uniforms',
-    description:
-      'Elegant, comfortable uniforms for hotels, resorts, restaurants, and F&B outlets. Designed for long service hours without compromising on style.',
-  },
-  {
-    icon: HardHat,
-    title: 'Industrial & Safety Wear',
-    description:
-      'High-visibility, safety-compliant workwear for factories, warehouses, and construction sites. Meets Malaysian industrial safety standards.',
-  },
-  {
-    icon: Dumbbell,
-    title: 'Sports & PE Uniforms',
-    description:
-      'Performance sportswear and PE uniforms for schools, sports clubs, and corporate events. Moisture-wicking fabrics for maximum comfort.',
-  },
-  {
-    icon: Scissors,
-    title: 'Custom Embroidery & Branding',
-    description:
-      'Logo embroidery, screen printing, heat transfer, and full custom branding services. Make every uniform a walking advertisement for your brand.',
-  },
-];
+interface ProductsProps {
+  sanityProducts?: SanityProduct[] | null;
+}
 
-export default function Products() {
+export default function Products({ sanityProducts }: ProductsProps) {
+  // Use Sanity products if available, otherwise fall back to site.config
+  const products = (sanityProducts && sanityProducts.length > 0)
+    ? sanityProducts.map((p) => ({
+        title:       p.title,
+        description: p.description,
+        gradient:    p.gradient || 'from-[#0A1F44] via-[#0d2855] to-[#1a3a6e]',
+        image:       p.imageUrl ?? '',
+        imageAlt:    p.imageAlt ?? p.title,
+      }))
+    : defaultProducts.map((p) => ({ ...p, imageAlt: p.title }));
   return (
     <section id="products" aria-labelledby="products-heading" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+
         <div className="text-center mb-16" data-aos="fade-up">
-          <p className="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
-            What We Offer
-          </p>
+          <span className="inline-block bg-gold/10 text-gold font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
+            {productsSection.eyebrow}
+          </span>
           <h2 id="products-heading" className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">
-            Our Uniform Collections
+            {productsSection.heading}
           </h2>
-          <p className="text-gray-600 max-w-xl mx-auto">
-            From corporate boardrooms to school halls, factory floors, and hotel lobbies —
-            we have the perfect uniform solution for your industry.
-          </p>
+          <p className="text-gray-500 max-w-xl mx-auto">{productsSection.subheading}</p>
         </div>
 
-        {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, i) => {
-            const Icon = product.icon;
+            const Icon = icons[i] ?? Briefcase;
             return (
               <article
                 key={product.title}
                 data-aos="fade-up"
                 data-aos-delay={`${(i % 3) * 100}`}
-                className="group bg-white rounded-2xl p-7 shadow-sm border-2 border-transparent hover:border-gold hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300"
+                className="card-hover group rounded-3xl overflow-hidden shadow-md cursor-pointer"
               >
-                <div className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center mb-5 group-hover:bg-gold transition-colors duration-300" aria-hidden="true">
-                  <Icon className="w-6 h-6 text-gold group-hover:text-white transition-colors duration-300" />
+                {/* Visual header */}
+                <div className={`relative bg-gradient-to-br ${product.gradient} h-44 flex items-center justify-center overflow-hidden`}>
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.imageAlt}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <>
+                      <div aria-hidden="true" className="absolute inset-0 opacity-10"
+                        style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 21px)' }} />
+                      <div aria-hidden="true" className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full bg-white/5" />
+                      <div aria-hidden="true" className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-white/5" />
+                      <div className="relative w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-8 h-8 text-white" aria-hidden="true" />
+                      </div>
+                      <div aria-hidden="true" className="absolute top-3 right-4 text-white/20 font-black text-5xl leading-none select-none">
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                    </>
+                  )}
                 </div>
-                <h3 className="text-navy font-bold text-lg mb-2">{product.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-5">
-                  {product.description}
-                </p>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm hover:gap-3 transition-all duration-200"
-                  aria-label={`Learn more about ${product.title}`}
-                >
-                  Get a Quote
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+
+                {/* Content */}
+                <div className="bg-white p-6">
+                  <h3 className="text-navy font-extrabold text-lg mb-2">{product.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{product.description}</p>
+                  <a
+                    href="#contact"
+                    aria-label={`Get a quote for ${product.title}`}
+                    className="inline-flex items-center gap-2 text-gold font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                  >
+                    Get a Quote
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
               </article>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-12" data-aos="fade-up">
-          <p className="text-gray-500 mb-4">Don&apos;t see what you need? We do custom orders.</p>
-          <a
-            href="#contact"
-            className="inline-block bg-navy text-white font-bold px-8 py-3.5 rounded-md hover:bg-opacity-90 transition-all duration-200 shadow-md"
-          >
-            Discuss Your Requirements
-          </a>
+        <div className="text-center mt-14" data-aos="fade-up">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-navy rounded-2xl px-8 py-6 shadow-xl">
+            <p className="text-gray-300 text-sm">{productsSection.ctaText}</p>
+            <a href="#contact" className="bg-gold text-white font-bold px-6 py-2.5 rounded-xl text-sm hover:brightness-110 transition-all whitespace-nowrap">
+              {productsSection.ctaButton}
+            </a>
+          </div>
         </div>
       </div>
     </section>

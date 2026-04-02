@@ -1,18 +1,18 @@
 'use client';
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { contact as defaultContact, contactSection } from '@/config/site.config';
 
-const uniformTypes = [
-  'Corporate Uniforms',
-  'School Uniforms',
-  'Hospitality & Hotel Uniforms',
-  'Industrial & Safety Wear',
-  'Sports & PE Uniforms',
-  'Custom Embroidery & Branding',
-  'Other / Not Sure',
-];
-
-const WA_NUMBER = '601123305012';
+interface ContactProps {
+  settings?: {
+    phone?: string;
+    whatsapp?: string;
+    email?: string;
+    address?: string;
+    hours?: string;
+    mapUrl?: string;
+  } | null;
+}
 
 const WhatsAppIcon = () => (
   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -20,69 +20,59 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-export default function Contact() {
-  const [form, setForm] = useState({
-    name: '',
-    company: '',
-    phone: '',
-    email: '',
-    type: '',
-    message: '',
-  });
+export default function Contact({ settings }: ContactProps) {
+  const contact = {
+    phone:        settings?.phone        ?? defaultContact.phone,
+    whatsapp:     settings?.whatsapp     ?? defaultContact.whatsapp,
+    email:        settings?.email        ?? defaultContact.email,
+    address:      settings?.address      ?? defaultContact.address,
+    addressShort: defaultContact.addressShort,
+    hours:        settings?.hours        ?? defaultContact.hours,
+    mapUrl:       settings?.mapUrl       ?? defaultContact.mapUrl,
+  };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', type: '', message: '' });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const lines = [
-      '*New Uniform Inquiry — Kah Global Website*',
-      '',
+      '*New Uniform Inquiry — Kah Global Website*', '',
       `*Name:* ${form.name}`,
-      form.company ? `*Company:* ${form.company}` : null,
+      form.company  ? `*Company:* ${form.company}`  : null,
       `*Phone:* ${form.phone}`,
-      form.email ? `*Email:* ${form.email}` : null,
+      form.email    ? `*Email:* ${form.email}`    : null,
       `*Uniform Type:* ${form.type}`,
-      form.message ? `*Message:* ${form.message}` : null,
-    ]
-      .filter(Boolean)
-      .join('\n');
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines)}`, '_blank');
+      form.message  ? `*Message:* ${form.message}` : null,
+    ].filter(Boolean).join('\n');
+    window.open(`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(lines)}`, '_blank');
   };
 
-  const inputClass =
-    'w-full border border-gray-200 rounded-lg px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 bg-white text-sm';
+  const inputClass = 'w-full border border-gray-200 rounded-lg px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 bg-white text-sm';
 
   const contactInfo = [
-    { Icon: MapPin, label: 'Address', value: 'Jalan Bunga Melur 3, Taman Suria Jaya, 56000 Cheras, WP Kuala Lumpur' },
-    { Icon: Phone, label: 'Phone / WhatsApp', value: '011-2330 5012' },
-    { Icon: Mail, label: 'Email', value: 'info@kahglobal.com.my' },
-    { Icon: Clock, label: 'Hours', value: 'Mon–Fri: 8am–5pm' },
+    { Icon: MapPin, label: 'Address',          value: contact.address },
+    { Icon: Phone, label: 'Phone / WhatsApp',  value: contact.phone   },
+    { Icon: Mail,  label: 'Email',             value: contact.email   },
+    { Icon: Clock, label: 'Hours',             value: contact.hours   },
   ];
 
   return (
     <section id="contact" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <p className="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
-            Get In Touch
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">
-            Request a Free Quote
-          </h2>
-          <p className="text-gray-600 max-w-xl mx-auto">
-            Fill in the form below and we&apos;ll open WhatsApp with your details pre-filled — for a
-            faster, more personal response.
-          </p>
+          <span className="inline-block bg-navy/5 text-navy font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
+            {contactSection.eyebrow}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">{contactSection.heading}</h2>
+          <p className="text-gray-600 max-w-xl mx-auto">{contactSection.subheading}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
-          {/* Contact Info — 2 cols */}
           <div className="lg:col-span-2 space-y-7" data-aos="fade-right">
-            <h3 className="text-xl font-bold text-navy">Contact & Location</h3>
-
+            <h3 className="text-xl font-bold text-navy">Contact &amp; Location</h3>
             {contactInfo.map(({ Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4">
                 <div className="w-11 h-11 bg-navy rounded-xl flex items-center justify-center flex-shrink-0">
@@ -94,134 +84,57 @@ export default function Contact() {
                 </div>
               </div>
             ))}
-
-            {/* Map placeholder */}
             <div className="w-full h-48 bg-navy rounded-2xl flex items-center justify-center overflow-hidden relative mt-2">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage:
-                    'repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,0.5) 20px, rgba(201,168,76,0.5) 21px)',
-                }}
-              />
+              <div aria-hidden="true" className="absolute inset-0 opacity-10"
+                style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(201,168,76,0.5) 20px, rgba(201,168,76,0.5) 21px)' }} />
               <div className="text-center relative">
                 <MapPin className="w-8 h-8 text-gold mx-auto mb-2" />
-                <p className="text-white font-semibold text-sm">Cheras, Selangor</p>
-                <p className="text-gray-400 text-xs mt-1">Map integration coming soon</p>
+                <p className="text-white font-semibold text-sm">{contact.addressShort}</p>
+                <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer"
+                  className="text-gold text-xs mt-1 hover:underline block">View on Google Maps →</a>
               </div>
             </div>
           </div>
 
-          {/* Form — 3 cols */}
-          <form
-            data-aos="fade-left"
-            onSubmit={handleSubmit}
-            className="lg:col-span-3 bg-white rounded-2xl shadow-sm p-8 space-y-5"
-          >
+          <form data-aos="fade-left" onSubmit={handleSubmit} className="lg:col-span-3 bg-white rounded-2xl shadow-sm p-8 space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                  Full Name <span className="text-gold">*</span>
-                </label>
-                <input
-                  name="name"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Ahmad Razali"
-                  className={inputClass}
-                />
+                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Full Name <span className="text-gold">*</span></label>
+                <input name="name" required value={form.name} onChange={handleChange} placeholder="Ahmad Razali" className={inputClass} />
               </div>
               <div>
-                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                  Company / Organisation
-                </label>
-                <input
-                  name="company"
-                  value={form.company}
-                  onChange={handleChange}
-                  placeholder="Syarikat ABC Sdn Bhd"
-                  className={inputClass}
-                />
+                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Company</label>
+                <input name="company" value={form.company} onChange={handleChange} placeholder="Syarikat ABC Sdn Bhd" className={inputClass} />
               </div>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                  Phone Number <span className="text-gold">*</span>
-                </label>
-                <input
-                  name="phone"
-                  type="tel"
-                  required
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="+60 12-345 6789"
-                  className={inputClass}
-                />
+                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Phone <span className="text-gold">*</span></label>
+                <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder="+60 12-345 6789" className={inputClass} />
               </div>
               <div>
-                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                  Email Address
-                </label>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="ahmad@company.com"
-                  className={inputClass}
-                />
+                <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Email</label>
+                <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="ahmad@company.com" className={inputClass} />
               </div>
             </div>
-
             <div>
-              <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                Uniform Type <span className="text-gold">*</span>
-              </label>
-              <select
-                name="type"
-                required
-                value={form.type}
-                onChange={handleChange}
-                className={inputClass}
-              >
+              <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Uniform Type <span className="text-gold">*</span></label>
+              <select name="type" required value={form.type} onChange={handleChange} className={inputClass}>
                 <option value="">Select a category...</option>
-                {uniformTypes.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
+                {contactSection.uniformTypes.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
-
             <div>
-              <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">
-                Message / Requirements
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Tell us about your requirements — quantity, style, colours, timeline, special requests..."
-                className={inputClass}
-              />
+              <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Message</label>
+              <textarea name="message" rows={4} value={form.message} onChange={handleChange}
+                placeholder="Tell us about your requirements — quantity, style, colours, timeline..."
+                className={inputClass} />
             </div>
-
-            <button
-              type="submit"
-              className="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:brightness-110 transition-all duration-200 flex items-center justify-center gap-2.5 text-base shadow-md shadow-gold/20"
-            >
-              <WhatsAppIcon />
-              Send via WhatsApp
+            <button type="submit"
+              className="w-full bg-gold text-white font-bold py-3.5 rounded-xl hover:brightness-110 transition-all duration-200 flex items-center justify-center gap-2.5 text-base shadow-md shadow-gold/20">
+              <WhatsAppIcon /> Send via WhatsApp
             </button>
-
-            <p className="text-center text-xs text-gray-400">
-              Clicking the button will open WhatsApp with your details pre-filled. We respond within 24 hours.
-            </p>
+            <p className="text-center text-xs text-gray-400">We respond within 24 hours.</p>
           </form>
         </div>
       </div>

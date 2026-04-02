@@ -1,118 +1,85 @@
 import { Palette, Package, Zap, Shield } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { whyUs } from '@/config/site.config';
 
-interface Feature {
-  icon: LucideIcon;
+const icons: LucideIcon[] = [Palette, Package, Zap, Shield];
+
+interface SanityFeature {
+  _id: string;
+  number: string;
   title: string;
   description: string;
-  aosDirection: 'fade-right' | 'fade-left';
 }
 
-const features: Feature[] = [
-  {
-    icon: Palette,
-    title: 'Custom Design & Branding',
-    description:
-      'Work directly with our in-house design team to create uniforms that perfectly represent your brand. Full customisation — colours, cuts, logos, embroidery, and print styles. No two brands are the same, and neither are our uniforms.',
-    aosDirection: 'fade-right',
-  },
-  {
-    icon: Package,
-    title: 'Bulk Order Specialists',
-    description:
-      'Whether it\'s 50 or 5,000 units, we handle large-scale orders with consistency and precision. Our volume pricing model ensures you get the most cost-effective solution in Malaysia without sacrificing quality.',
-    aosDirection: 'fade-left',
-  },
-  {
-    icon: Zap,
-    title: 'Fast Turnaround',
-    description:
-      'We understand that deadlines matter. Our streamlined production process and dedicated logistics team ensure your order is delivered on time, every time — without compromising on quality or craftsmanship.',
-    aosDirection: 'fade-right',
-  },
-  {
-    icon: Shield,
-    title: 'Quality Fabric & Stitching',
-    description:
-      'All uniforms are manufactured using premium, durable fabrics carefully selected for each industry\'s demands. Reinforced stitching and rigorous QC checks at every stage mean you get uniforms built to last — backed by our quality guarantee.',
-    aosDirection: 'fade-left',
-  },
-];
+interface WhyUsProps {
+  sanityFeatures?: SanityFeature[] | null;
+}
 
-export default function WhyUs() {
+export default function WhyUs({ sanityFeatures }: WhyUsProps) {
+  const features = (sanityFeatures && sanityFeatures.length > 0)
+    ? sanityFeatures.map((f) => ({ num: f.number, title: f.title, description: f.description }))
+    : whyUs.features;
   return (
-    <section id="why-us" aria-labelledby="whyus-heading" className="py-24 bg-navy overflow-hidden">
+    <section id="why-us" aria-labelledby="whyus-heading" className="py-24 bg-gradient-navy overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-20" data-aos="fade-up">
-          <p className="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
-            Why Choose Us
-          </p>
+
+        <div className="text-center mb-16" data-aos="fade-up">
+          <span className="inline-block bg-gold/15 border border-gold/30 text-gold font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
+            {whyUs.eyebrow}
+          </span>
           <h2 id="whyus-heading" className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            The Kah Global Difference
+            {whyUs.heading}
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            We&apos;re more than a uniform supplier — we&apos;re your long-term uniform partner.
-            Here&apos;s what sets us apart.
-          </p>
+          <p className="text-gray-400 max-w-xl mx-auto">{whyUs.subheading}</p>
         </div>
 
-        {/* Alternating Feature Blocks */}
-        <div className="space-y-16">
+        {/* 2×2 Feature Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
           {features.map((feature, i) => {
-            const Icon = feature.icon;
-            const isReversed = i % 2 !== 0;
+            const Icon = icons[i] ?? Palette;
+            const aos = i % 2 === 0 ? 'fade-right' : 'fade-left';
             return (
               <article
                 key={feature.title}
-                data-aos={feature.aosDirection}
+                data-aos={aos}
                 aria-label={feature.title}
-                className={`flex flex-col md:flex-row items-center gap-8 lg:gap-14 ${
-                  isReversed ? 'md:flex-row-reverse' : ''
-                }`}
+                className="group relative bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 hover:border-gold/40 transition-all duration-300 overflow-hidden card-hover"
               >
-                {/* Icon block */}
-                <div className="flex-shrink-0" aria-hidden="true">
-                  <div className="w-20 h-20 bg-gold rounded-2xl flex items-center justify-center shadow-lg shadow-gold/20">
-                    <Icon className="w-10 h-10 text-white" />
-                  </div>
+                <div aria-hidden="true" className="absolute top-4 right-6 text-white/5 font-black text-8xl leading-none select-none group-hover:text-gold/10 transition-colors duration-300">
+                  {feature.num}
                 </div>
-
-                {/* Text block */}
-                <div
-                  className={`flex-1 text-center md:text-left ${
-                    isReversed ? 'md:text-right' : ''
-                  }`}
-                >
-                  <h3 className="text-white font-extrabold text-xl sm:text-2xl mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed max-w-lg">
-                    {feature.description}
-                  </p>
+                <div className="relative w-14 h-14 bg-gold/20 border border-gold/30 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-gold transition-colors duration-300">
+                  <Icon className="w-7 h-7 text-gold group-hover:text-white transition-colors duration-300" aria-hidden="true" />
                 </div>
+                <h3 className="text-white font-extrabold text-xl mb-3">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed text-sm">{feature.description}</p>
+                <div className="mt-6 h-0.5 w-0 bg-gold group-hover:w-full transition-all duration-500 rounded-full" />
               </article>
             );
           })}
         </div>
 
-        {/* Bottom CTA Banner */}
-        <div
-          data-aos="fade-up"
-          className="mt-20 border border-gold/30 rounded-2xl p-8 md:p-10 text-center bg-white/5"
-        >
-          <h3 className="text-white font-extrabold text-2xl mb-3">
-            Ready to Outfit Your Team?
-          </h3>
-          <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Get a free consultation and quote — no commitment required. We respond within 24 hours.
-          </p>
-          <a
-            href="#contact"
-            className="inline-block bg-gold text-white font-bold px-8 py-3.5 rounded-md hover:brightness-110 transition-all duration-200 shadow-md"
-          >
-            Get a Free Quote
-          </a>
+        {/* Stats row */}
+        <div data-aos="fade-up" className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          {whyUs.stats.map((stat) => (
+            <div key={stat.label} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+              <div className="text-3xl font-black text-gold mb-1">{stat.value}</div>
+              <div className="text-gray-400 text-xs">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Banner */}
+        <div data-aos="fade-up" className="relative overflow-hidden bg-gold rounded-3xl p-8 md:p-12 text-center">
+          <div aria-hidden="true" className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/10" />
+          <div aria-hidden="true" className="absolute -bottom-8 -left-8 w-36 h-36 rounded-full bg-white/10" />
+          <div className="relative">
+            <h3 className="text-white font-extrabold text-2xl sm:text-3xl mb-3">{whyUs.ctaHeading}</h3>
+            <p className="text-white/80 mb-7 max-w-md mx-auto">{whyUs.ctaText}</p>
+            <a href="#contact" className="inline-block bg-white text-navy font-extrabold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 shadow-xl">
+              {whyUs.ctaButton}
+            </a>
+          </div>
         </div>
       </div>
     </section>

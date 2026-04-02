@@ -1,7 +1,17 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
 import Image from 'next/image';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { company, contact as defaultContact, social, images, footer } from '@/config/site.config';
 
-const WA_NUMBER = '601123305012';
+interface FooterProps {
+  settings?: {
+    companyName?: string;
+    phone?: string;
+    email?: string;
+    address?: string;
+    instagram?: string;
+    facebook?: string;
+  } | null;
+}
 
 const WhatsAppIcon = () => (
   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -10,72 +20,54 @@ const WhatsAppIcon = () => (
 );
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home',     href: '#home'     },
+  { label: 'About',   href: '#about'    },
+  { label: 'Products',href: '#products' },
+  { label: 'Why Us',  href: '#why-us'   },
+  { label: 'Contact', href: '#contact'  },
 ];
 
-const services = [
-  'Corporate Uniforms',
-  'School Uniforms',
-  'Hospitality Uniforms',
-  'Industrial Safety Wear',
-  'Sports Uniforms',
-  'Custom Embroidery',
-];
+export default function Footer({ settings }: FooterProps) {
+  const contact = {
+    phone:        settings?.phone    ?? defaultContact.phone,
+    phoneLink:    defaultContact.phoneLink,
+    email:        settings?.email   ?? defaultContact.email,
+    address:      settings?.address ?? defaultContact.address,
+    addressShort: defaultContact.addressShort,
+  };
 
-export default function Footer() {
   return (
     <footer className="bg-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand Column */}
+
+          {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#home" className="inline-block mb-4">
               <Image
-                src="/logo.png"
-                alt="Kah Global Uniform Sdn Bhd — Official Logo"
-                width={160}
-                height={64}
+                src={images.logo}
+                alt={`${company.name} — Official Logo`}
+                width={160} height={64}
                 className="h-14 w-auto object-contain brightness-0 invert"
                 loading="lazy"
               />
             </a>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Malaysia&apos;s trusted uniform manufacturer based in Cheras, Selangor. Quality
-              uniforms for every industry, crafted with pride since 2014.
-            </p>
-            {/* Social icons */}
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">{footer.tagline}</p>
             <div className="flex gap-3">
-              <a
-                href="#"
-                aria-label="Follow us on Instagram"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200"
-              >
-                {/* Instagram SVG */}
+              <a href={social.instagram} aria-label="Follow us on Instagram"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200">
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
               </a>
-              <a
-                href="#"
-                aria-label="Follow us on Facebook"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200"
-              >
-                {/* Facebook SVG */}
+              <a href={social.facebook} aria-label="Follow us on Facebook"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200">
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
               </a>
-              <a
-                href={`https://wa.me/${WA_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Chat with us on WhatsApp"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200"
-              >
+              <a href={social.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold transition-colors duration-200">
                 <WhatsAppIcon />
               </a>
             </div>
@@ -83,19 +75,12 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">
-              Quick Links
-            </h3>
+            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">Quick Links</h3>
             <nav aria-label="Footer navigation">
               <ul className="space-y-2.5">
                 {navLinks.map(({ label, href }) => (
                   <li key={href}>
-                    <a
-                      href={href}
-                      className="text-gray-400 text-sm hover:text-gold transition-colors duration-200"
-                    >
-                      {label}
-                    </a>
+                    <a href={href} className="text-gray-400 text-sm hover:text-gold transition-colors duration-200">{label}</a>
                   </li>
                 ))}
               </ul>
@@ -104,68 +89,45 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">
-              Our Services
-            </h3>
+            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">Our Services</h3>
             <ul className="space-y-2.5">
-              {services.map((s) => (
+              {footer.services.map((s) => (
                 <li key={s}>
-                  <a
-                    href="#products"
-                    className="text-gray-400 text-sm hover:text-gold transition-colors duration-200"
-                  >
-                    {s}
-                  </a>
+                  <a href="#products" className="text-gray-400 text-sm hover:text-gold transition-colors duration-200">{s}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">
-              Contact Us
-            </h3>
+            <h3 className="text-gold font-bold uppercase text-xs tracking-widest mb-5">Contact Us</h3>
             <address className="not-italic">
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <span className="text-gray-400 text-sm">
-                    Jalan Bunga Melur 3, Taman Suria Jaya, 56000 Cheras, WP KL
-                  </span>
+                  <span className="text-gray-400 text-sm">{contact.address}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <a href="tel:+601123305012" className="text-gray-400 text-sm hover:text-gold transition-colors">
-                    011-2330 5012
-                  </a>
+                  <a href={contact.phoneLink} className="text-gray-400 text-sm hover:text-gold transition-colors">{contact.phone}</a>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <a href="mailto:info@kahglobal.com.my" className="text-gray-400 text-sm hover:text-gold transition-colors">
-                    info@kahglobal.com.my
-                  </a>
+                  <a href={`mailto:${contact.email}`} className="text-gray-400 text-sm hover:text-gold transition-colors">{contact.email}</a>
                 </li>
               </ul>
             </address>
-            <a
-              href="#contact"
-              aria-label="Request a uniform quote from Kah Global"
-              className="mt-6 inline-block bg-gold text-white text-sm font-bold px-5 py-2.5 rounded-md hover:brightness-110 transition-all duration-200"
-            >
+            <a href="#contact" aria-label="Request a uniform quote"
+              className="mt-6 inline-block bg-gold text-white text-sm font-bold px-5 py-2.5 rounded-md hover:brightness-110 transition-all duration-200">
               Get a Quote
             </a>
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2025 Kah Global Uniform Sdn Bhd. All Rights Reserved.
-          </p>
-          <p className="text-gray-600 text-xs">
-            Cheras, Selangor, Malaysia
-          </p>
+          <p className="text-gray-500 text-sm">{footer.copyright}</p>
+          <p className="text-gray-600 text-xs">{company.regNumber} · {contact.addressShort}</p>
         </div>
       </div>
     </footer>
