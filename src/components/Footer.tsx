@@ -47,19 +47,28 @@ export default function Footer({ settings }: FooterProps) {
           <div className="lg:col-span-1">
             <a href="#home" className="inline-block mb-4">
               {(settings?.logo_url || settings?.logoUrl) ? (
-                <Image
-                  src={settings.logo_url || settings.logoUrl || ''}
-                  alt={`${settings?.companyName ?? company.name} — Official Logo`}
-                  width={160} height={64}
-                  className="h-14 w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={settings.logo_url || settings.logoUrl || ''}
+                    alt={`${settings?.companyName ?? company.name} — Official Logo`}
+                    width={180} height={72}
+                    className="h-14 w-auto object-contain"
+                    loading="lazy"
+                  />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-white font-extrabold text-lg leading-none">{settings?.companyName ?? company.name}</span>
+                    <span className="text-[#C9A84C] text-[10px] font-semibold tracking-widest uppercase mt-0.5">Uniform Manufacturer</span>
+                  </div>
+                </div>
               ) : (
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-[#C9A84C] rounded-xl flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#C9A84C] rounded-xl flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-black text-sm">KG</span>
                   </div>
-                  <span className="text-white font-extrabold text-xl">{settings?.companyName ?? company.name}</span>
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-white font-extrabold text-lg leading-none">{settings?.companyName ?? company.name}</span>
+                    <span className="text-[#C9A84C] text-[10px] font-semibold tracking-widest uppercase mt-0.5">Uniform Manufacturer</span>
+                  </div>
                 </div>
               )}
             </a>
