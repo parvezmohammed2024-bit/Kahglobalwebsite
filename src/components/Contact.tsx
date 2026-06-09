@@ -52,7 +52,7 @@ export default function Contact({ settings }: ContactProps) {
     window.open(`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(lines)}`, '_blank');
   };
 
-  const inputClass = 'w-full border border-gray-200 rounded-lg px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 bg-white text-sm';
+  const inputClass = 'w-full border border-gray-200 rounded-xl px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 bg-gray-50 focus:bg-white text-sm';
 
   const contactInfo = [
     { Icon: MapPin, label: 'Address',          value: contact.address },
@@ -68,7 +68,7 @@ export default function Contact({ settings }: ContactProps) {
           <span className="inline-block bg-navy/5 text-navy font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
             {contactSection.eyebrow}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">{contactSection.heading}</h2>
+          <h2 className="heading-accent text-3xl sm:text-4xl font-extrabold text-navy mb-8">{contactSection.heading}</h2>
           <p className="text-gray-600 max-w-xl mx-auto">{contactSection.subheading}</p>
         </div>
 
@@ -111,7 +111,7 @@ export default function Contact({ settings }: ContactProps) {
             )}
           </div>
 
-          <form data-aos="fade-left" onSubmit={handleSubmit} className="lg:col-span-3 bg-white rounded-2xl shadow-sm p-8 space-y-5">
+          <form data-aos="fade-left" onSubmit={handleSubmit} className="lg:col-span-3 bg-white rounded-2xl shadow-lg shadow-navy/8 border border-gray-100 p-8 space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wide">Full Name <span className="text-gold">*</span></label>

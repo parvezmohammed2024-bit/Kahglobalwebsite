@@ -27,7 +27,7 @@ export default function WhyUs({ sanityFeatures }: WhyUsProps) {
           <span className="inline-block bg-gold/15 border border-gold/30 text-gold font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
             {whyUs.eyebrow}
           </span>
-          <h2 id="whyus-heading" className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+          <h2 id="whyus-heading" className="heading-accent text-3xl sm:text-4xl font-extrabold text-white mb-8">
             {whyUs.heading}
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">{whyUs.subheading}</p>
