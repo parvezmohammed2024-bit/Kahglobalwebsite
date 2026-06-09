@@ -31,12 +31,14 @@ export default function Navbar({ logoUrl, companyName = 'Kah Global' }: NavbarPr
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
-        scrolled ? 'shadow-lg' : ''
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'navbar-glass shadow-sm' : 'bg-white border-b border-gray-100'
       }`}
     >
+      {/* Gold top accent bar */}
+      <div className="h-0.5 gold-line" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-18 py-3">
 
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 flex-shrink-0">
@@ -75,7 +77,7 @@ export default function Navbar({ logoUrl, companyName = 'Kah Global' }: NavbarPr
             <a
               href="#contact"
               aria-label="Request a uniform quote from Kah Global"
-              className="ml-2 bg-gold text-white text-sm font-bold px-5 py-2 rounded-md hover:brightness-110 transition-all duration-200 shadow-sm"
+              className="ml-2 bg-gold text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:brightness-110 hover:shadow-md hover:shadow-gold/30 transition-all duration-200 shadow-sm"
             >
               Get a Quote
             </a>

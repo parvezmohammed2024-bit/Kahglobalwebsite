@@ -37,7 +37,7 @@ export default function Products({ sanityProducts }: ProductsProps) {
           <span className="inline-block bg-gold/10 text-gold font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
             {productsSection.eyebrow}
           </span>
-          <h2 id="products-heading" className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">
+          <h2 id="products-heading" className="heading-accent text-3xl sm:text-4xl font-extrabold text-navy mb-8">
             {productsSection.heading}
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">{productsSection.subheading}</p>
@@ -51,7 +51,7 @@ export default function Products({ sanityProducts }: ProductsProps) {
                 key={product.title}
                 data-aos="fade-up"
                 data-aos-delay={`${(i % 3) * 100}`}
-                className="card-hover group rounded-3xl overflow-hidden shadow-md cursor-pointer"
+                className="card-hover group rounded-3xl overflow-hidden shadow-md border border-transparent hover:border-gold/20 cursor-pointer"
               >
                 {/* Visual header */}
                 <div className={`relative bg-gradient-to-br ${product.gradient} h-44 flex items-center justify-center overflow-hidden`}>

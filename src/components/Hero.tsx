@@ -131,15 +131,15 @@ export default function Hero({ settings }: HeroProps) {
             {/* Stats */}
             <ul
               aria-label="Company highlights"
-              className="mt-10 flex flex-wrap gap-5 sm:gap-6 items-center list-none p-0 animate-fade-in-up delay-400"
+              className="mt-10 flex flex-wrap gap-4 sm:gap-5 items-center list-none p-0 animate-fade-in-up delay-400"
             >
               {hero.stats.map((item, i) => (
-                <li key={item.label} className="flex items-center gap-3">
-                  <div className="text-center">
-                    <div className="text-gold font-extrabold text-lg sm:text-xl leading-none">{item.num}</div>
-                    <div className="text-gray-400 text-xs mt-0.5">{item.label}</div>
+                <li key={item.label} className="flex items-center gap-4">
+                  <div className="text-center bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 hover:border-gold/30 transition-colors duration-200">
+                    <div className="text-gold font-extrabold text-xl sm:text-2xl leading-none">{item.num}</div>
+                    <div className="text-gray-400 text-[11px] mt-1 font-medium">{item.label}</div>
                   </div>
-                  {i < hero.stats.length - 1 && <div className="w-px h-8 bg-white/10" />}
+                  {i < hero.stats.length - 1 && <div className="w-px h-8 bg-white/10 hidden sm:block" />}
                 </li>
               ))}
             </ul>

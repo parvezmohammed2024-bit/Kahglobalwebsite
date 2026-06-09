@@ -30,7 +30,7 @@ export default function About({ settings }: AboutProps) {
           <span className="inline-block bg-navy/5 text-navy font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-4">
             About Us
           </span>
-          <h2 id="about-heading" className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">
+          <h2 id="about-heading" className="heading-accent text-3xl sm:text-4xl font-extrabold text-navy mb-8">
             {heading}
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">{intro}</p>
@@ -101,7 +101,10 @@ export default function About({ settings }: AboutProps) {
 
           {/* Right — Text */}
           <div data-aos="fade-left" className="order-1 lg:order-2">
-            <h3 className="text-2xl font-extrabold text-navy mb-4">Our Story</h3>
+            <h3 className="text-2xl font-extrabold text-navy mb-4 flex items-center gap-3">
+              <span className="w-1 h-7 bg-gold rounded-full flex-shrink-0" aria-hidden="true" />
+              Our Story
+            </h3>
             <p className="text-gray-600 leading-relaxed mb-5">{story1}</p>
             <p className="text-gray-600 leading-relaxed mb-8">{story2}</p>
 
