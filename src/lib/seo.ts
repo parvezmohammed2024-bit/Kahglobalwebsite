@@ -18,14 +18,23 @@ type PageSeo = {
   path: string;
   keywords?: string[];
   image?: { url: string; alt: string };
+  /** Skip the "| Kah Global Sdn Bhd" title suffix (e.g. home page) */
+  absoluteTitle?: boolean;
 };
 
 const DEFAULT_IMAGE = { url: '/og-image.jpg', alt: `${company.name} — uniform supplier in Cheras, Kuala Lumpur` };
 
-export function pageMetadata({ title, description, path, keywords = [], image = DEFAULT_IMAGE }: PageSeo): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+  keywords = [],
+  image = DEFAULT_IMAGE,
+  absoluteTitle = false,
+}: PageSeo): Metadata {
   const url = `${SITE_URL}${path === '/' ? '' : path}`;
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     keywords: [...keywords, ...CORE_KEYWORDS],
     alternates: { canonical: url },
