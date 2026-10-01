@@ -112,6 +112,11 @@
   }
 }
 
+/* Update banner closed this session (set by src/lib/updateBanner.ts) */
+html[data-update-banner='dismissed'] #update-banner {
+  display: none;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

@@ -10,7 +10,7 @@ Use this to track what still needs a **real Kah Global photo**.
 | **Real** | Kah Global's own asset |
 | **Old site** | Restored from the previous website |
 | **Unsplash** | Stock photo hot-linked from `images.unsplash.com` (allowed in `next.config.ts`) |
-| **Placeholder** | Generated grey `[PLACEHOLDER]` card — needs a photo |
+| **Placeholder** | Neutral grey card with the Kah Global logo mark — needs a photo |
 
 > **Status (current):** no real photos have been uploaded to `public/images/`, and the old site's photos were
 > stored in Supabase (never in git), so nothing could be restored. Unsplash could not be reached from the build
@@ -140,7 +140,7 @@ Set in `src/data/industries.ts`. Ratio 16:9. Industries without an `image` show 
 
 | Slot | Notes |
 | --- | --- |
-| Client logos (home, industries) | Text placeholders; add logo files + `logo` paths in `src/data/site.ts` → `clientLogos` once clients approve. |
+| Client logos (home, industries) | Strip is hidden until a client has a `logo` path in `src/data/site.ts` → `clientLogos`. Add logo files once clients approve. |
 | Contact map | Live Google Maps embed — no image needed. |
 
 ## Shots to prioritise when photographing
