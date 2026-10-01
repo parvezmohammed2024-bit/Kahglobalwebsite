@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
 import { updatePopup } from '@/config/site';
@@ -142,16 +143,14 @@ export function UpdatePopup({ delayMs }: { delayMs: number }) {
           <X aria-hidden className="size-4" />
         </button>
 
-        <div className="mx-auto mb-5 flex flex-col items-center gap-2">
-          {/* "KG" monogram in brand colours */}
-          <span
-            aria-hidden
-            className="relative flex size-14 items-center justify-center rounded-card bg-navy font-display text-xl font-extrabold tracking-tight text-white shadow-card"
-          >
-            KG
-            <span className="absolute bottom-2.5 h-0.5 w-5 rounded-full bg-orange" />
-          </span>
-          <span className="font-display text-sm font-extrabold tracking-wide text-navy">KAH GLOBAL</span>
+        <div className="mx-auto mb-5 flex justify-center">
+          <Image
+            src="/brand/logo-full.png"
+            alt="Kah Global Sdn Bhd"
+            width={600}
+            height={269}
+            className="h-auto w-48 sm:w-52"
+          />
         </div>
 
         <h2 id="update-popup-title" className="font-display text-headline-sm font-bold text-navy sm:text-2xl">
