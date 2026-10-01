@@ -17,6 +17,7 @@ export type PrintingMethod = {
   /** Indicative add-on price per piece */
   priceFrom: string;
   image: string;
+  imageAlt: string;
 };
 
 export const printingMethods: PrintingMethod[] = [
@@ -32,6 +33,7 @@ export const printingMethods: PrintingMethod[] = [
     moq: '[PLACEHOLDER] e.g. 30 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM3.50 / pc',
     image: '/images/home/embroidery-machine.jpg',
+    imageAlt: 'Computerised embroidery machine stitching a logo onto fabric',
   },
   {
     id: 'silkscreen',
@@ -45,6 +47,7 @@ export const printingMethods: PrintingMethod[] = [
     moq: '[PLACEHOLDER] e.g. 50 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM2.50 / pc',
     image: '/images/categories/t-shirts.jpg',
+    imageAlt: 'Screen printing a logo onto a t-shirt with a squeegee',
   },
   {
     id: 'sublimation',
@@ -58,6 +61,7 @@ export const printingMethods: PrintingMethod[] = [
     moq: '[PLACEHOLDER] e.g. 30 pcs',
     priceFrom: '[PLACEHOLDER] quoted per design',
     image: '/images/categories/jerseys.jpg',
+    imageAlt: 'Brightly coloured sublimation-printed sports jersey',
   },
   {
     id: 'dtf',
@@ -71,6 +75,7 @@ export const printingMethods: PrintingMethod[] = [
     moq: '[PLACEHOLDER] e.g. 20 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM4.00 / pc',
     image: '/images/products/f1-shirt-navy-orange.jpg',
+    imageAlt: 'Detailed full-colour DTF transfer on a uniform shirt',
   },
 ];
 

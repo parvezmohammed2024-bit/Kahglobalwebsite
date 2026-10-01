@@ -58,7 +58,7 @@ export default function IndustriesPage() {
             >
               {ind.image && (
                 <div className="relative aspect-[16/9] bg-surface">
-                  <Image src={ind.image} alt={`${ind.name} uniforms`} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+                  <Image src={ind.image} alt={ind.imageAlt ?? `${ind.name} uniforms`} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
                 </div>
               )}
               <div className="flex flex-1 flex-col gap-4 p-6">

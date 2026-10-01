@@ -80,12 +80,12 @@ const tiers = [
 ];
 
 const inspiration = [
-  { src: '/images/custom/f1-crew-uniform.jpg', title: 'Dual-tone F1 crew uniforms', tag: 'Logistics & aviation' },
-  { src: '/images/industries/food-beverage.jpg', title: 'Café tunics & cross-back aprons', tag: 'Food & beverage' },
-  { src: '/images/industries/factory.jpg', title: 'Heavy-duty drill workwear', tag: 'Factories & plants' },
-  { src: '/images/industries/events.jpg', title: 'Sublimated event & run tees', tag: 'Events & CSR' },
-  { src: '/images/industries/corporate.jpg', title: 'Executive Oxford shirts', tag: 'Corporate HQ' },
-  { src: '/images/industries/logistics.jpg', title: 'Rider polos with reflective piping', tag: 'Delivery fleets' },
+  { src: '/images/custom/f1-crew-uniform.jpg', title: 'Dual-tone F1 crew uniforms', tag: 'Logistics & aviation', alt: 'Crew member in a navy and red dual-tone F1-style uniform' },
+  { src: '/images/industries/food-beverage.jpg', title: 'Café tunics & cross-back aprons', tag: 'Food & beverage', alt: 'Café staff in a mandarin-collar tunic and cross-back apron' },
+  { src: '/images/industries/factory.jpg', title: 'Heavy-duty drill workwear', tag: 'Factories & plants', alt: 'Plant worker in heavy-duty drill workwear' },
+  { src: '/images/industries/events.jpg', title: 'Sublimated event & run tees', tag: 'Events & CSR', alt: 'Runners in matching sublimated event t-shirts' },
+  { src: '/images/industries/corporate.jpg', title: 'Executive Oxford shirts', tag: 'Corporate HQ', alt: 'Executives in tailored light blue Oxford shirts' },
+  { src: '/images/industries/logistics.jpg', title: 'Rider polos with reflective piping', tag: 'Delivery fleets', alt: 'Delivery rider in a polo shirt with reflective piping' },
 ];
 
 const faqs: Faq[] = [
@@ -226,7 +226,7 @@ export default function CustomMadePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-surface">
                 <Image
                   src={item.src}
-                  alt={item.title}
+                  alt={item.alt}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -19,6 +19,7 @@ export type Industry = {
   needs: string[];
   recommended: CategorySlug[];
   image?: string;
+  imageAlt?: string;
 };
 
 export const industries: Industry[] = [
@@ -32,6 +33,7 @@ export const industries: Industry[] = [
     needs: ['Smart, consistent look across branches', 'Embroidered logos', 'Male, female & modest cuts'],
     recommended: ['polo-shirts', 'corporate-shirts', 'jackets', 'muslimah'],
     image: '/images/industries/corporate.jpg',
+    imageAlt: 'Office team wearing matching corporate shirts',
   },
   {
     slug: 'food-beverage',
@@ -43,6 +45,7 @@ export const industries: Industry[] = [
     needs: ['Breathable fabrics for hot kitchens', 'Easy-wash, stain-friendly colours', 'Aprons and caps to complete the look'],
     recommended: ['t-shirts', 'polo-shirts', 'aprons-caps'],
     image: '/images/industries/food-beverage.jpg',
+    imageAlt: 'Café barista in a branded uniform and apron',
   },
   {
     slug: 'factories',
@@ -54,6 +57,7 @@ export const industries: Industry[] = [
     needs: ['Heavy-duty, long-lasting fabrics', 'Reflective tape & hi-vis options', 'Name or department printing'],
     recommended: ['industrial', 'f1-shirts', 'polo-shirts'],
     image: '/images/industries/factory.jpg',
+    imageAlt: 'Factory worker in heavy-duty workwear on the production floor',
   },
   {
     slug: 'schools',
@@ -75,6 +79,7 @@ export const industries: Industry[] = [
     needs: ['Fast turnaround for event dates', 'Cost-effective bulk printing', 'Quick-dry fabrics for outdoor events'],
     recommended: ['t-shirts', 'jerseys', 'polo-shirts'],
     image: '/images/industries/events.jpg',
+    imageAlt: 'Event crew in matching printed t-shirts',
   },
   {
     slug: 'hospitality',
@@ -106,5 +111,6 @@ export const industries: Industry[] = [
     needs: ['Quick-dry for outdoor work', 'Reflective and hi-vis options', 'Jackets for riders'],
     recommended: ['polo-shirts', 'jackets', 'industrial'],
     image: '/images/industries/logistics.jpg',
+    imageAlt: 'Delivery rider in a branded polo shirt beside a vehicle',
   },
 ];

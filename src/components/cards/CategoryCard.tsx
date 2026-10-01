@@ -11,7 +11,7 @@ export function CategoryCard({ category, count }: { category: Category; count?: 
       <div className="relative aspect-[4/3] overflow-hidden bg-surface">
         <Image
           src={category.image}
-          alt={category.name}
+          alt={category.imageAlt}
           fill
           sizes="(min-width: 1024px) 25vw, 50vw"
           className="object-cover transition-transform duration-300 group-hover:scale-105"

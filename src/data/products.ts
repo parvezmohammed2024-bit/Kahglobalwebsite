@@ -29,18 +29,19 @@ export type Category = {
   name: string;
   blurb: string;
   image: string;
+  imageAlt: string;
 };
 
 export const categories: Category[] = [
-  { slug: 'polo-shirts', name: 'Polo Shirts', blurb: 'Honeycomb, quick-dry & cotton piqué', image: '/images/categories/polo-shirts.jpg' },
-  { slug: 't-shirts', name: 'Round Neck T-Shirts', blurb: 'Combed cotton & microfibre tees', image: '/images/categories/t-shirts.jpg' },
-  { slug: 'corporate-shirts', name: 'Corporate Shirts', blurb: 'Oxford & easy-care office shirts', image: '/images/categories/corporate-shirts.jpg' },
-  { slug: 'f1-shirts', name: 'F1 / Racing Shirts', blurb: 'Multi-panel corporate F1 cuts', image: '/images/categories/f1-shirts.jpg' },
-  { slug: 'jerseys', name: 'Sublimation Jerseys', blurb: 'Full-colour dri-fit jerseys', image: '/images/categories/jerseys.jpg' },
-  { slug: 'jackets', name: 'Jackets & Windbreakers', blurb: 'Microfibre, fleece & bombers', image: '/images/categories/jackets.jpg' },
-  { slug: 'muslimah', name: 'Muslimah Wear', blurb: 'Modest-cut blouses & tunics', image: '/images/categories/muslimah.jpg' },
-  { slug: 'aprons-caps', name: 'Aprons & Caps', blurb: 'F&B aprons, caps & accessories', image: '/images/categories/aprons-caps.jpg' },
-  { slug: 'industrial', name: 'Industrial & Safety', blurb: 'Workwear, reflective & vests', image: '/images/products/industrial-twill-shirt.jpg' },
+  { slug: 'polo-shirts', name: 'Polo Shirts', blurb: 'Honeycomb, quick-dry & cotton piqué', image: '/images/categories/polo-shirts.jpg', imageAlt: 'Folded corporate polo shirts in assorted colours' },
+  { slug: 't-shirts', name: 'Round Neck T-Shirts', blurb: 'Combed cotton & microfibre tees', image: '/images/categories/t-shirts.jpg', imageAlt: 'Stack of plain round neck cotton t-shirts' },
+  { slug: 'corporate-shirts', name: 'Corporate Shirts', blurb: 'Oxford & easy-care office shirts', image: '/images/categories/corporate-shirts.jpg', imageAlt: 'Light blue corporate button-down shirt on a hanger' },
+  { slug: 'f1-shirts', name: 'F1 / Racing Shirts', blurb: 'Multi-panel corporate F1 cuts', image: '/images/categories/f1-shirts.jpg', imageAlt: 'Colour-blocked F1-style corporate uniform shirt' },
+  { slug: 'jerseys', name: 'Sublimation Jerseys', blurb: 'Full-colour dri-fit jerseys', image: '/images/categories/jerseys.jpg', imageAlt: 'Full-colour sublimated sports jersey' },
+  { slug: 'jackets', name: 'Jackets & Windbreakers', blurb: 'Microfibre, fleece & bombers', image: '/images/categories/jackets.jpg', imageAlt: 'Dark microfibre corporate jacket with zip front' },
+  { slug: 'muslimah', name: 'Muslimah Wear', blurb: 'Modest-cut blouses & tunics', image: '/images/categories/muslimah.jpg', imageAlt: 'Modest long-cut corporate blouse' },
+  { slug: 'aprons-caps', name: 'Aprons & Caps', blurb: 'F&B aprons, caps & accessories', image: '/images/categories/aprons-caps.jpg', imageAlt: 'Canvas work apron and twill cap' },
+  { slug: 'industrial', name: 'Industrial & Safety', blurb: 'Workwear, reflective & vests', image: '/images/products/industrial-twill-shirt.jpg', imageAlt: 'Navy workwear shirt with reflective tape' },
 ];
 
 export type Fabric =

@@ -104,7 +104,7 @@ export default function PrintingPage() {
           return (
             <section key={m.id} id={m.id} className="grid scroll-mt-36 items-center gap-8 lg:grid-cols-2 lg:gap-14">
               <div className={`relative aspect-[4/3] overflow-hidden rounded-panel bg-surface shadow-card ${i % 2 ? 'lg:order-2' : ''}`}>
-                <Image src={m.image} alt={`${m.name} example`} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+                <Image src={m.image} alt={m.imageAlt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
               </div>
               <div className="flex flex-col gap-5">
                 <span className="flex size-12 items-center justify-center rounded-card bg-orange text-white">
