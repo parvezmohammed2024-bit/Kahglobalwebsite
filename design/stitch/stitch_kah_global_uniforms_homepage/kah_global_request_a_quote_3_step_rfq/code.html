@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request a Quote (RFQ) | Kah Global Sdn Bhd - Cheras OEM Uniform Manufacturer</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#495f82",
+            "on-tertiary-fixed": "#001c3b",
+            "surface-bright": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-background": "#0b1c30",
+            "surface-container-highest": "#d3e4fe",
+            "on-secondary-container": "#5f2200",
+            "outline-variant": "#c4c6cf",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "secondary-fixed-dim": "#ffb694",
+            "surface-container": "#e5eeff",
+            "secondary": "#a14000",
+            "on-tertiary-container": "#688dc6",
+            "surface": "#f8f9ff",
+            "tertiary-fixed": "#d5e3ff",
+            "surface-variant": "#d3e4fe",
+            "on-error-container": "#93000a",
+            "background": "#f8f9ff",
+            "surface-container-high": "#dce9ff",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#44474e",
+            "on-primary-fixed-variant": "#314769",
+            "on-tertiary-fixed-variant": "#1d477c",
+            "primary-fixed-dim": "#b1c7f0",
+            "surface-dim": "#cbdbf5",
+            "primary-fixed": "#d5e3ff",
+            "primary-container": "#0b2545",
+            "secondary-fixed": "#ffdbcc",
+            "tertiary": "#001027",
+            "on-primary-fixed": "#001c3b",
+            "inverse-surface": "#213145",
+            "on-error": "#ffffff",
+            "inverse-primary": "#b1c7f0",
+            "primary": "#001026",
+            "secondary-container": "#ff7528",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "outline": "#74777f",
+            "surface-container-low": "#eff4ff",
+            "on-secondary-fixed": "#351000",
+            "on-primary-container": "#778db2",
+            "tertiary-fixed-dim": "#a7c8ff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "margin": "3rem",
+            "gutter-mobile": "1rem",
+            "space-2xl": "4rem",
+            "margin-mobile": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display": ["Manrope"],
+            "label-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "display-mobile": ["Manrope"],
+            "title-md": ["Inter"],
+            "headline-lg-mobile": ["Manrope"],
+            "headline-lg": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "headline-md": ["Manrope"]
+          },
+          "fontSize": {
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "letterSpacing": "0", "fontWeight": "400" }],
+            "display": ["3.5rem", { "lineHeight": "4.25rem", "letterSpacing": "-0.025em", "fontWeight": "800" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-sm": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0", "fontWeight": "400" }],
+            "display-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "title-md": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "0", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-lg": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Top Announcement Bar -->
+<div class="bg-primary text-on-primary border-b border-primary-container px-6 py-2 text-label-sm font-label-sm">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-3 flex-wrap">
+<span class="inline-flex items-center gap-1 text-secondary-fixed">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span>Free delivery across West Malaysia for orders above RM500</span>
+</span>
+<span class="text-outline-variant">•</span>
+<span class="text-surface-variant">Cheras Factory Direct OEM</span>
+</div>
+<div class="flex items-center gap-4 text-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">call</span>
+          Hotline: +60 3-9130 8828
+        </span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1 text-secondary-fixed">
+<span class="material-symbols-outlined text-[15px]">chat</span>
+          WhatsApp: +60 12-345 6789
+        </span>
+</div>
+</div>
+</div>
+<!-- Shared TopNavBar Component -->
+<header class="bg-surface dark:bg-primary docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
+<div class="w-full max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-3" href="#">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[24px]">precision_manufacturing</span>
+</div>
+<div>
+<span class="text-headline-sm font-headline-sm font-bold tracking-tight text-primary dark:text-on-primary block leading-none">Kah Global</span>
+<span class="text-label-sm font-label-sm text-outline tracking-wider uppercase block mt-1">OEM Apparel &amp; Uniforms</span>
+</div>
+</a>
+<!-- Primary Navigation Links -->
+<nav class="hidden lg:flex items-center gap-7">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Corporate Uniforms</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Industrial Workwear</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Custom Apparel</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Fabric Catalog</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Factory &amp; Quality</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md transition-colors hover:text-secondary dark:hover:text-secondary-fixed hover:bg-surface-container-low dark:hover:bg-primary-container px-2 py-1 rounded" href="#">Case Studies</a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-outline-variant bg-surface-container-lowest text-primary text-label-md font-label-md hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+          Catalogue PDF
+        </a>
+<!-- Active CTA: Get a Quote -->
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-secondary-container text-on-primary text-label-md font-label-md font-semibold hover:bg-secondary transition-all shadow-sm" href="#rfq-form">
+<span class="material-symbols-outlined text-[18px]">request_quote</span>
+          Get a Quote
+        </a>
+</div>
+</div>
+</header>
+<!-- Breadcrumbs & Context Header -->
+<div class="bg-surface-container-lowest border-b border-outline-variant py-8">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-label-sm font-label-sm text-outline mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Quotations &amp; RFQ</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Request a Quote</span>
+</nav>
+<div class="max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-label-sm font-label-sm font-semibold mb-3">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          Official B2B Enterprise Tender &amp; Quotation Desk
+        </div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight text-balance">
+          Instant Corporate Uniform &amp; Apparel Quotation (RFQ)
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-2 text-balance">
+          Get transparent direct-factory itemized pricing within 24 hours. Free digital 3D mockup and fabric swatch box with every qualified business inquiry.
+        </p>
+</div>
+<!-- Trust Assurance Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-outline-variant/60">
+<div class="flex items-center gap-2.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<span class="material-symbols-outlined text-secondary-container text-[22px]">bolt</span>
+<div>
+<div class="text-label-sm font-label-sm text-primary">24-Hour Guaranteed</div>
+<div class="text-[11px] text-outline">Factory Turnaround</div>
+</div>
+</div>
+<div class="flex items-center gap-2.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary-container text-[22px]">factory</span>
+<div>
+<div class="text-label-sm font-label-sm text-primary">Cheras Direct OEM</div>
+<div class="text-[11px] text-outline">Zero Agent Markups</div>
+</div>
+</div>
+<div class="flex items-center gap-2.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<span class="material-symbols-outlined text-secondary text-[22px]">design_services</span>
+<div>
+<div class="text-label-sm font-label-sm text-primary">Free CAD Sizing</div>
+<div class="text-[11px] text-outline">Photorealistic 3D Mockup</div>
+</div>
+</div>
+<div class="flex items-center gap-2.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[22px]">approval_delegation</span>
+<div>
+<div class="text-label-sm font-label-sm text-primary">SSM &amp; MOF Certified</div>
+<div class="text-[11px] text-outline">Gov &amp; GLC Registered</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main RFQ Form Canvas (2-Column Grid Layout) -->
+<main class="max-w-7xl mx-auto px-6 py-10 w-full flex-1">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: The 3-Step Interactive RFQ Form (8 of 12 cols = ~67%) -->
+<section class="lg:col-span-8 space-y-8" id="rfq-form">
+<!-- Step Navigation Stepper -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline-variant">
+<div>
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Tender Specification Flow</span>
+<h2 class="text-headline-sm font-headline-sm text-primary">Apparel Specification Wizard</h2>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+              Complete in ~3 Minutes
+            </span>
+</div>
+<!-- Stepper Indicator -->
+<div class="grid grid-cols-3 gap-3 mt-4 pt-2">
+<!-- Step 1 Indicator -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md text-label-md shrink-0 ring-4 ring-primary-container/20">
+                1
+              </div>
+<div class="min-w-0">
+<div class="text-label-sm font-label-sm text-primary truncate">Step 1: Product &amp; Volume</div>
+<div class="text-[11px] text-outline truncate">Garment specs &amp; counts</div>
+</div>
+</div>
+<!-- Step 2 Indicator -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-label-md text-label-md shrink-0">
+                2
+              </div>
+<div class="min-w-0">
+<div class="text-label-sm font-label-sm text-on-surface truncate">Step 2: Customisation</div>
+<div class="text-[11px] text-outline truncate">Logo, print &amp; sizing</div>
+</div>
+</div>
+<!-- Step 3 Indicator -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-label-md text-label-md shrink-0">
+                3
+              </div>
+<div class="min-w-0">
+<div class="text-label-sm font-label-sm text-on-surface truncate">Step 3: Company &amp; SLA</div>
+<div class="text-[11px] text-outline truncate">Delivery &amp; schedule</div>
+</div>
+</div>
+</div>
+</div>
+<form class="space-y-8" onsubmit="event.preventDefault();">
+<!-- ================= STEP 1 ================= -->
+<div class="bg-surface-container-lowest p-6 md:p-8 rounded-xl border border-outline-variant shadow-sm space-y-6">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-md bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-label-sm">01</span>
+<h3 class="text-title-md font-title-md text-primary">Product Type &amp; Production Volume</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Required Section</span>
+</div>
+<!-- Garment Selector Grid -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">
+                Select Garment Style &amp; Silhouette
+              </label>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-3.5" id="garment-grid">
+<!-- Garment 1 (Active by default) -->
+<label class="cursor-pointer relative border-2 border-secondary-container bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:border-secondary transition-all">
+<input checked="" class="sr-only" name="garment_type" type="radio" value="polo"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">checkroom</span>
+<span class="w-4 h-4 rounded-full border-2 border-secondary-container bg-secondary-container flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+</span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Honeycomb Polo</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">210 GSM Pique Cotton-Poly</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">Best Seller</span>
+</div>
+</label>
+<!-- Garment 2 -->
+<label class="cursor-pointer relative border border-outline-variant bg-surface-container-lowest rounded-xl p-4 flex flex-col justify-between hover:border-primary transition-all">
+<input class="sr-only" name="garment_type" type="radio" value="oxford"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">styler</span>
+<span class="w-4 h-4 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Executive Oxford Shirt</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">Long / Short Sleeve Poly-Cotton</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">Wrinkle-Resistant</span>
+</div>
+</label>
+<!-- Garment 3 -->
+<label class="cursor-pointer relative border border-outline-variant bg-surface-container-lowest rounded-xl p-4 flex flex-col justify-between hover:border-primary transition-all">
+<input class="sr-only" name="garment_type" type="radio" value="f1"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">sports_motorsports</span>
+<span class="w-4 h-4 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Corporate F1 Uniform</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">Multi-Panel Custom Piping Cut</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">Custom Colors</span>
+</div>
+</label>
+<!-- Garment 4 -->
+<label class="cursor-pointer relative border border-outline-variant bg-surface-container-lowest rounded-xl p-4 flex flex-col justify-between hover:border-primary transition-all">
+<input class="sr-only" name="garment_type" type="radio" value="drifit"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">accessibility_new</span>
+<span class="w-4 h-4 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Heavyweight Dri-Fit Tee</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">180 GSM Microfibre Eyelet</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">Quick-Dry Breathable</span>
+</div>
+</label>
+<!-- Garment 5 -->
+<label class="cursor-pointer relative border border-outline-variant bg-surface-container-lowest rounded-xl p-4 flex flex-col justify-between hover:border-primary transition-all">
+<input class="sr-only" name="garment_type" type="radio" value="industrial"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">shield</span>
+<span class="w-4 h-4 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Industrial Workwear &amp; Vest</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">Heavy Drill Cotton (SIRIM Reflector)</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-secondary-fixed text-on-secondary-fixed">Safety Certified</span>
+</div>
+</label>
+<!-- Garment 6 -->
+<label class="cursor-pointer relative border border-outline-variant bg-surface-container-lowest rounded-xl p-4 flex flex-col justify-between hover:border-primary transition-all">
+<input class="sr-only" name="garment_type" type="radio" value="bespoke"/>
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-[28px] text-primary-container">straighten</span>
+<span class="w-4 h-4 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-4">
+<span class="font-title-md text-title-md text-primary block leading-tight">Custom Bespoke Cut &amp; Sew</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block mt-1">Tailored from Client Tech Packs</span>
+<span class="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">OEM Patterning</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Production Track Toggle -->
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<span class="text-label-md font-label-md text-primary block">Manufacturing Production Track</span>
+<span class="text-body-sm font-body-sm text-outline">Select based on your turnaround schedule constraints</span>
+</div>
+<div class="inline-flex p-1 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<button class="px-3.5 py-1.5 rounded-md text-label-sm font-label-sm bg-primary-container text-on-primary" type="button">
+                  Ready-Made Stock (3-5 days)
+                </button>
+<button class="px-3.5 py-1.5 rounded-md text-label-sm font-label-sm text-on-surface-variant hover:text-primary" type="button">
+                  Custom-Made Bespoke (7-14 days)
+                </button>
+</div>
+</div>
+<!-- Order Volume Selector -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-label-md font-label-md text-primary">Estimated Order Volume (Pieces)</label>
+<span class="text-[12px] font-semibold text-secondary-container bg-surface-container px-2 py-0.5 rounded">
+                  MOQ: 30 pcs (Ready) / 50 pcs (Custom)
+                </span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+<button class="py-2.5 px-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-sm font-label-sm text-primary hover:border-primary focus:bg-primary-container focus:text-on-primary" type="button">
+                  30 - 49 pcs
+                </button>
+<button class="py-2.5 px-2 border-2 border-secondary-container bg-surface-container-low rounded-lg text-label-sm font-label-sm text-primary font-semibold" type="button">
+                  50 - 99 pcs
+                </button>
+<button class="py-2.5 px-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-sm font-label-sm text-primary hover:border-primary" type="button">
+                  100 - 299 pcs
+                </button>
+<button class="py-2.5 px-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-sm font-label-sm text-primary hover:border-primary" type="button">
+                  300 - 499 pcs
+                </button>
+<button class="py-2.5 px-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-sm font-label-sm text-primary hover:border-primary" type="button">
+                  500 - 999 pcs
+                </button>
+<button class="py-2.5 px-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-sm font-label-sm text-primary hover:border-primary" type="button">
+                  1,000+ pcs
+                </button>
+</div>
+<!-- Custom Count Input & Fabric Preference Selection -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1.5">Exact Quantity (if known)</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" min="30" placeholder="e.g. 120" type="number" value="80"/>
+<span class="absolute right-3 top-3 text-label-sm font-label-sm text-outline">pcs</span>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1.5">Fabric Grade Preference</label>
+<select class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Honeycomb Pique (65% Polyester / 35% Cotton - 210 GSM)</option>
+<option>100% Ring-Spun Combed Cotton (190 GSM)</option>
+<option>Microfibre Quick-Dry Interlock (160 GSM)</option>
+<option>Heavyweight Industrial Poly-Twill (Anti-Static, SIRIM)</option>
+<option>CVC Oxford Cotton Shirting (Easy Care)</option>
+<option>Send Fabric Swatches for Decision</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= STEP 2 ================= -->
+<div class="bg-surface-container-lowest p-6 md:p-8 rounded-xl border border-outline-variant shadow-sm space-y-6">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-md bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-label-sm">02</span>
+<h3 class="text-title-md font-title-md text-primary">Customisation, Printing &amp; Sizing Matrix</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Artwork &amp; Specs</span>
+</div>
+<!-- Branding / Printing Method Selector -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Corporate Branding / Printing Method</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<label class="p-3.5 border-2 border-secondary-container bg-surface-container-low rounded-lg cursor-pointer flex flex-col justify-between">
+<input checked="" class="sr-only" name="branding_method" type="radio" value="embroidery"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-[24px]">palette</span>
+<span class="w-3.5 h-3.5 rounded-full bg-secondary-container"></span>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md text-primary block">Tajima Computerized Embroidery</span>
+<span class="text-[12px] text-on-surface-variant block mt-0.5">Up to 10k stitches, crisp professional chest crests</span>
+</div>
+</label>
+<label class="p-3.5 border border-outline-variant bg-surface-container-lowest rounded-lg cursor-pointer flex flex-col justify-between hover:border-primary">
+<input class="sr-only" name="branding_method" type="radio" value="silkscreen"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-[24px]">format_paint</span>
+<span class="w-3.5 h-3.5 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md text-primary block">Silkscreen Rubber Dye Print</span>
+<span class="text-[12px] text-on-surface-variant block mt-0.5">High wash durability, ideal for large bulk orders</span>
+</div>
+</label>
+<label class="p-3.5 border border-outline-variant bg-surface-container-lowest rounded-lg cursor-pointer flex flex-col justify-between hover:border-primary">
+<input class="sr-only" name="branding_method" type="radio" value="dtf"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary-container text-[24px]">layers</span>
+<span class="w-3.5 h-3.5 rounded-full border border-outline-variant"></span>
+</div>
+<div class="mt-2">
+<span class="text-label-md font-label-md text-primary block">High-Definition DTF Transfer</span>
+<span class="text-[12px] text-on-surface-variant block mt-0.5">Full colour photo gradients &amp; multi-tone gradients</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Logo Placement Checkboxes -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Logo Placement Coordinates (Select all applicable)</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input checked="" class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Left Chest (Std)</span>
+</label>
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Right Chest</span>
+</label>
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input checked="" class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Right Sleeve</span>
+</label>
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Left Sleeve</span>
+</label>
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Upper Back Nape</span>
+</label>
+<label class="p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest flex items-center gap-2 cursor-pointer text-label-sm font-label-sm">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+<span>Full Back Center</span>
+</label>
+</div>
+</div>
+<!-- Drag-and-drop Logo Upload Zone -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-1">Company Logo / Vector Artwork Upload</label>
+<div class="border-2 border-dashed border-outline-variant hover:border-primary-container rounded-xl p-6 text-center bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[40px] text-primary-container">cloud_upload</span>
+<p class="text-label-md font-label-md text-primary mt-2">
+                  Drop your logo artwork here, or <button class="text-secondary underline font-semibold" type="button">browse files</button>
+</p>
+<p class="text-label-sm font-label-sm text-outline mt-1">
+                  Supports AI, EPS, PDF, SVG or High-Res PNG (Max file size: 25MB)
+                </p>
+<div class="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded bg-surface-container-lowest border border-outline-variant text-[12px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+                  Don't have vector files? Our in-house Cheras prepress team redraws your logo for free.
+                </div>
+</div>
+</div>
+<!-- Garment Color Picker -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Garment Primary Colour Choice</label>
+<div class="flex items-center gap-3 flex-wrap">
+<!-- Navy (Selected) -->
+<button class="w-8 h-8 rounded-full bg-primary-container ring-2 ring-offset-2 ring-primary relative flex items-center justify-center" title="Corporate Deep Navy (#0B2545)" type="button">
+<span class="w-2 h-2 rounded-full bg-on-primary"></span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-tint hover:scale-105 transition-transform" title="Royal Blue" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-primary hover:scale-105 transition-transform" title="Formal Black" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest border border-outline hover:scale-105 transition-transform" title="Pure White" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-inverse-surface hover:scale-105 transition-transform" title="Charcoal Melange" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-on-tertiary-fixed-variant hover:scale-105 transition-transform" title="Forest Green" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-secondary-container hover:scale-105 transition-transform" title="Industrial Hi-Vis Safety Orange" type="button"></button>
+<button class="w-8 h-8 rounded-full bg-error hover:scale-105 transition-transform" title="Maroon / Crimson" type="button"></button>
+<div class="flex items-center gap-2 ml-2">
+<span class="text-label-sm font-label-sm text-outline">or Custom Pantone:</span>
+<input class="h-8 px-2.5 border border-outline-variant rounded bg-surface-container-lowest text-label-sm font-label-sm w-32 focus:border-primary" placeholder="e.g. PMS 289 C" type="text"/>
+</div>
+</div>
+</div>
+<!-- Size Breakdown Matrix -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-label-md font-label-md text-primary">Asian Standard Sizing Breakdown (Optional Estimate)</label>
+<span class="text-label-sm font-label-sm text-secondary font-semibold">Total Tally: <span id="total-units">80</span> pcs</span>
+</div>
+<div class="overflow-x-auto border border-outline-variant rounded-lg">
+<table class="w-full text-center text-label-sm font-label-sm">
+<thead class="bg-primary-container text-on-primary uppercase tracking-wider text-[11px]">
+<tr>
+<th class="py-2.5 px-2">XS</th>
+<th class="py-2.5 px-2">S</th>
+<th class="py-2.5 px-2">M</th>
+<th class="py-2.5 px-2">L</th>
+<th class="py-2.5 px-2">XL</th>
+<th class="py-2.5 px-2">2XL</th>
+<th class="py-2.5 px-2">3XL</th>
+<th class="py-2.5 px-2">4XL</th>
+<th class="py-2.5 px-2">5XL</th>
+</tr>
+</thead>
+<tbody class="divide-x divide-outline-variant bg-surface-container-lowest">
+<tr>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="5"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="15"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="25"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="20"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="10"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="3"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="2"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="0"/></td>
+<td class="p-1.5"><input class="w-12 h-8 text-center border-outline-variant rounded text-body-sm font-body-sm focus:border-primary" type="number" value="0"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="text-[11px] text-outline mt-1.5">Note: Sizing distributions can be adjusted before production cutting begins.</p>
+</div>
+</div>
+<!-- ================= STEP 3 ================= -->
+<div class="bg-surface-container-lowest p-6 md:p-8 rounded-xl border border-outline-variant shadow-sm space-y-6">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-md bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-label-sm">03</span>
+<h3 class="text-title-md font-title-md text-primary">Corporate Entity, Contact &amp; Delivery Schedule</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Final Logistics</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Company / Entity Name *</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Petronas Gas Berhad" required="" type="text"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">SSM No. / Tax ID (Optional for 30-day terms)</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. 201801045233 (1298450-P)" type="text"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Contact Person Name *</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Encik Farhan Rahim" required="" type="text"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Designation / Department *</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Procurement Lead / HR Manager" required="" type="text"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Corporate Email Address *</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. procurement@company.com.my" required="" type="email"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">WhatsApp / Phone Hotline *</label>
+<div class="relative">
+<span class="absolute left-3.5 top-2.5 text-body-md text-outline">🇲🇾 +60</span>
+<input class="w-full h-11 pl-16 pr-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="12 345 6789" required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Destination State / Region *</label>
+<select class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Kuala Lumpur &amp; Putrajaya (Free Express Delivery)</option>
+<option>Selangor (Free Express Delivery)</option>
+<option>Johor &amp; Melaka</option>
+<option>Penang &amp; Perak</option>
+<option>Negeri Sembilan &amp; Pahang</option>
+<option>East Malaysia (Sabah &amp; Sarawak Air Freight)</option>
+<option>Singapore / International Export</option>
+</select>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">Target Delivery Due Date</label>
+<input class="w-full h-11 px-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="date"/>
+</div>
+</div>
+<!-- Delivery Urgency Pills -->
+<div class="flex items-center gap-2 pt-1 flex-wrap">
+<span class="text-label-sm font-label-sm text-outline">Urgency:</span>
+<span class="px-2.5 py-1 rounded-full text-[12px] font-semibold bg-secondary-fixed text-on-secondary-fixed cursor-pointer">Urgent (&lt;7 Days Rush OEM)</span>
+<span class="px-2.5 py-1 rounded-full text-[12px] font-semibold bg-surface-container-low border border-outline-variant text-primary cursor-pointer">Standard (10-14 Days)</span>
+<span class="px-2.5 py-1 rounded-full text-[12px] font-semibold bg-surface-container-low border border-outline-variant text-primary cursor-pointer">Planning / Tender Stage</span>
+</div>
+<!-- Additional Remarks Textarea -->
+<div>
+<label class="block text-label-sm font-label-sm text-primary mb-1.5">
+                Special Packaging, Individual Barcoding &amp; Split-Shipment Instructions
+              </label>
+<textarea class="w-full p-3.5 border border-outline-variant rounded-lg bg-surface-container-lowest text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g. Please individually fold in polybags with size stickers. Order to be split into 2 branch deliveries (KL Office &amp; Johor Port facility)..." rows="3"></textarea>
+</div>
+<!-- Form Submission Cluster -->
+<div class="pt-4 border-t border-outline-variant space-y-4">
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<!-- Primary Action CTA Button -->
+<button class="w-full sm:w-auto flex-1 h-14 bg-secondary-container hover:bg-secondary text-on-primary rounded-lg font-semibold flex items-center justify-center gap-3 transition-colors shadow-md" type="submit">
+<div class="text-left">
+<span class="text-title-md font-title-md block leading-none">Submit Quotation Request →</span>
+<span class="text-[11px] text-on-secondary-fixed block mt-1 font-normal">Official factory itemized PDF dispatched within 24h</span>
+</div>
+<span class="material-symbols-outlined text-[24px]">send</span>
+</button>
+<!-- Secondary Action Download -->
+<button class="w-full sm:w-auto h-14 px-6 border border-outline-variant hover:bg-surface-container-low text-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                  Save Draft / PDF Template
+                </button>
+</div>
+<!-- Confidentiality Note -->
+<div class="flex items-center justify-center gap-2 text-label-sm font-label-sm text-outline pt-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">lock</span>
+                Strict NDA &amp; Malaysian PDPA Compliant. Your brand artwork and specifications remain 100% confidential.
+              </div>
+</div>
+</div>
+</form>
+</section>
+<!-- Right Column: Sticky Procurement Sidebar (4 of 12 cols = ~33%) -->
+<aside class="lg:col-span-4 space-y-6 sticky top-28">
+<!-- Response Time SLA Box -->
+<div class="bg-primary text-on-primary p-6 rounded-xl border border-primary-container shadow-sm">
+<div class="flex items-center justify-between pb-3 border-b border-primary-container">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-primary text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">speed</span>
+              24H SLA
+            </span>
+<span class="text-surface-variant text-[12px]">Cheras OEM Desk</span>
+</div>
+<div class="mt-4">
+<div class="text-headline-sm font-headline-sm text-on-primary">Guaranteed 24H Turnaround</div>
+<p class="text-body-sm font-body-sm text-surface-variant mt-1">
+              Procurement requests submitted on business days are reviewed and itemized by our senior textile engineers within 2-4 hours.
+            </p>
+</div>
+<div class="mt-4 pt-3 border-t border-primary-container text-label-sm font-label-sm text-surface-variant space-y-1">
+<div class="flex justify-between">
+<span>Mon – Fri:</span>
+<span class="text-on-primary font-semibold">8:30 AM – 6:00 PM</span>
+</div>
+<div class="flex justify-between">
+<span>Saturday:</span>
+<span class="text-on-primary font-semibold">8:30 AM – 1:00 PM</span>
+</div>
+</div>
+</div>
+<!-- "Why Kah Global" Factory Checklist -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm space-y-4">
+<h3 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+            The Direct Cheras Factory Advantage
+          </h3>
+<ul class="space-y-3 text-body-sm font-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-container text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Direct OEM Pricing:</strong> Cut out retail trading middlemen and save 25% to 35% on volume procurement.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-container text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Japanese Tajima Machinery:</strong> 20-head high-speed embroidery line for razor-sharp micro-stitch logo fidelity.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-container text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>48h Physical Pre-Production Sample:</strong> Dispatched quickly to your office for management sign-off.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-container text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>SIRIM &amp; OEKO-TEX Standard 100:</strong> Non-hazardous reactive eco-dyes guaranteed wash-fast over 50 industrial cycles.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-container text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Trusted Partner:</strong> Uniform supplier to 2,500+ Malaysian GLCs and multi-nationals since 2014.</span>
+</li>
+</ul>
+</div>
+<!-- Immediate Factory Assistance & WhatsApp Direct -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-primary block">Need Immediate Guidance?</span>
+<span class="text-label-sm font-label-sm text-outline">Speak directly with Cheras Prepress</span>
+</div>
+</div>
+<div class="space-y-2.5 pt-2">
+<!-- Direct Factory Line -->
+<a class="flex items-center justify-between p-3 rounded-lg bg-surface-container-lowest border border-outline-variant hover:border-primary transition-colors" href="tel:+60391308828">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">call</span>
+<span class="text-label-sm font-label-sm text-primary">+60 3-9130 8828</span>
+</div>
+<span class="text-[11px] text-outline font-semibold">Factory Desk</span>
+</a>
+<!-- WhatsApp Specialist Button -->
+<a class="flex items-center justify-center gap-2 p-3 rounded-lg bg-surface-container-lowest border border-outline-variant hover:bg-surface-container transition-colors text-label-md font-label-md text-primary font-semibold" href="https://wa.me/60123456789" target="_blank">
+<span class="material-symbols-outlined text-[20px] text-secondary">chat</span>
+              Chat on WhatsApp (+60 12-345 6789)
+            </a>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant text-[12px] text-on-surface-variant flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">location_on</span>
+<span>
+<strong>Cheras Showroom Open:</strong> Walk in to inspect 50+ actual production specimens, collar options, and fabric touch-feel swatches.
+            </span>
+</div>
+</div>
+<!-- Free Fabric Swatch Box Callout -->
+<div class="p-5 rounded-xl border border-secondary-fixed-dim bg-secondary-fixed/30 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-primary block font-bold">Free Corporate Swatch Box</span>
+<p class="text-[12px] text-on-surface-variant mt-1 leading-relaxed">
+              Every qualified company inquiry can request a physical fabric ring binder with actual GSM weights dispatched free via courier.
+            </p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Procurement FAQ Section -->
+<section class="bg-surface-container-lowest border-t border-outline-variant py-16">
+<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-2xl mb-10">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider font-semibold">Institutional FAQs</span>
+<h2 class="text-headline-md font-headline-md text-primary mt-1">Frequently Asked Quotation Questions</h2>
+<p class="text-body-md font-body-md text-outline mt-1">Transparent purchasing terms for Malaysian corporations, factories, and institutions.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-5 rounded-xl bg-surface-container-low border border-outline-variant">
+<h4 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">help_outline</span>
+            What is the standard payment term for corporate clients?
+          </h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">
+            Standard orders require a 50% confirmation deposit to initiate fabric dye-cutting, with the remaining 50% upon final delivery inspection. Registered government entities, universities, and established public listed corporations may apply for 30-day corporate credit terms upon SSM verification.
+          </p>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-low border border-outline-variant">
+<h4 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">help_outline</span>
+            Can we receive a pre-production sample before bulk sewing?
+          </h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">
+            Yes. For all customized orders exceeding 100 pieces, Kah Global produces and couriers one full pre-production physical prototype with complete embroidery/printing for your management committee's physical sign-off before commencing bulk assembly.
+          </p>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-low border border-outline-variant">
+<h4 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">help_outline</span>
+            What file formats are preferred for company logos?
+          </h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">
+            We recommend vector formats (Adobe Illustrator .AI, .EPS, or vector .PDF) to preserve razor-sharp thread lines. If you only possess a raster PNG or JPEG, our Cheras graphic prepress unit will vectorize and optimize stitch coordinates free of charge.
+          </p>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-low border border-outline-variant">
+<h4 class="text-title-md font-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">help_outline</span>
+            Do you handle nationwide delivery to multiple subsidiary branches?
+          </h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">
+            Absolutely. We manage multi-destination logistics across West and East Malaysia. Garments are polybagged, labeled by department or employee name, and bundled into master cartons with detailed packing slips for straightforward branch distribution.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Shared Footer Component -->
+<footer class="w-full docked bottom bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-primary border-t border-primary-container dark:border-outline-variant">
+<div class="w-full max-w-7xl mx-auto px-6 py-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-primary-container dark:border-outline-variant">
+<!-- Col 1: Brand & Identity -->
+<div class="space-y-4">
+<span class="text-headline-md font-headline-md font-extrabold text-on-primary dark:text-primary tracking-tight block">
+            Kah Global
+          </span>
+<p class="text-body-sm font-body-sm text-surface-variant">
+            Industrial-grade B2B corporate uniform manufacturing, computerized Tajima embroidery, and specialized contract workwear since 2014.
+          </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-1 rounded bg-primary-container text-surface-variant text-[11px] font-semibold border border-surface-tint/30">
+              SIRIM MS 1784
+            </span>
+<span class="px-2 py-1 rounded bg-primary-container text-surface-variant text-[11px] font-semibold border border-surface-tint/30">
+              OEKO-TEX 100
+            </span>
+</div>
+</div>
+<!-- Col 2: Apparel Solutions -->
+<div class="space-y-3">
+<h4 class="text-label-md font-label-md text-on-primary dark:text-primary uppercase tracking-wider">Garment Solutions</h4>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Corporate Uniforms</a></li>
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Safety Workwear &amp; PPE</a></li>
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Textile &amp; Fabric Specs</a></li>
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">OEM Bulk Manufacturing</a></li>
+</ul>
+</div>
+<!-- Col 3: Institutional Links -->
+<div class="space-y-3">
+<h4 class="text-label-md font-label-md text-on-primary dark:text-primary uppercase tracking-wider">Procurement &amp; Trust</h4>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Factory Certifications</a></li>
+<li><a class="text-secondary-fixed dark:text-secondary font-label-md text-label-md" href="#">Request RFQ</a></li>
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-surface-variant hover:text-on-primary dark:hover:text-on-surface transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<!-- Col 4: Cheras Factory HQ -->
+<div class="space-y-3">
+<h4 class="text-label-md font-label-md text-on-primary dark:text-primary uppercase tracking-wider">Factory Operations</h4>
+<div class="text-body-sm font-body-sm text-surface-variant space-y-2">
+<p class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed shrink-0">pin_drop</span>
+<span>Industrial Park, Cheras, 56000 Kuala Lumpur, Malaysia.</span>
+</p>
+<p class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed shrink-0">phone</span>
+<span>+60 3-9130 8828</span>
+</p>
+<p class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed shrink-0">mail</span>
+<span>procurement@kahglobal.com.my</span>
+</p>
+</div>
+</div>
+</div>
+<!-- Legal & SSM Attribution -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm font-body-sm text-surface-variant">
+<p>© 2024 Kah Global Sdn Bhd (201401008112 / 1084190-X). All rights reserved. Industrial Park, Cheras, 56000 Kuala Lumpur, Malaysia.</p>
+<div class="flex items-center gap-4 text-label-sm font-label-sm">
+<span>Malaysian Owned &amp; Operated</span>
+<span>•</span>
+<span>MOF Registered Tender Supplier</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Dynamic Sizing Tally Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sizeInputs = document.querySelectorAll('table input[type="number"]');
+      const tallyDisplay = document.getElementById('total-units');
+
+      function updateTally() {
+        let total = 0;
+        sizeInputs.forEach(input => {
+          total += parseInt(input.value) || 0;
+        });
+        if (tallyDisplay) {
+          tallyDisplay.textContent = total;
+        }
+      }
+
+      sizeInputs.forEach(input => {
+        input.addEventListener('input', updateTally);
+      });
+    });
+  </script>
+</body></html>
