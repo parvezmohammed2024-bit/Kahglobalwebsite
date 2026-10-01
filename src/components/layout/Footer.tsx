@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
-import { company, contact, mainNav, social } from '@/data/site';
+import { company, contact, CURRENT_YEAR, mainNav, social } from '@/data/site';
 import { categories } from '@/data/products';
 import { printingMethods } from '@/data/services';
 import { whatsappUrl, DEFAULT_WHATSAPP_MESSAGE } from '@/lib/whatsapp';
@@ -8,7 +8,6 @@ import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { Logo } from './Logo';
 
 export function Footer() {
-  const year = new Date().getFullYear();
   const socials = Object.entries(social).filter(([, url]) => url);
 
   return (
@@ -133,7 +132,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-5 text-xs md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {company.name} ({company.registration}). All rights reserved.
+            © {CURRENT_YEAR} {company.name} ({company.registration}). All rights reserved.
           </p>
           <p>Uniform supplier in Cheras, Kuala Lumpur, Malaysia.</p>
         </div>

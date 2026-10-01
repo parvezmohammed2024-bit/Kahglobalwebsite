@@ -24,6 +24,10 @@ export const company = {
     'Kah Global Sdn Bhd supplies ready-made and custom-made uniforms with in-house printing and embroidery for companies, F&B outlets, factories, schools and events across Malaysia.',
 } as const;
 
+/** Evaluated at build time (pages are statically generated). */
+export const CURRENT_YEAR = new Date().getFullYear();
+export const YEARS_IN_BUSINESS = CURRENT_YEAR - company.foundedYear;
+
 export const contact = {
   whatsapp: {
     display: '011-2330 5012',

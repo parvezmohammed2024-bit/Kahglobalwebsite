@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Check, CircleCheck, Clock, Package, Ruler } from 'lucide-react';
-import { company, terms } from '@/data/site';
+import { company, terms, YEARS_IN_BUSINESS } from '@/data/site';
 import { categories, countByCategory, getFeaturedProducts } from '@/data/products';
 import { orderSteps, printingMethods } from '@/data/services';
 import { industries } from '@/data/industries';
@@ -57,7 +57,6 @@ const pathways = [
 
 export default function HomePage() {
   const featured = getFeaturedProducts(4);
-  const years = new Date().getFullYear() - company.foundedYear;
 
   return (
     <>
@@ -127,7 +126,7 @@ export default function HomePage() {
                 <Clock aria-hidden className="size-5" />
               </span>
               <span className="flex flex-col">
-                <span className="font-display text-sm font-bold text-navy">{years}+ years of uniform making</span>
+                <span className="font-display text-sm font-bold text-navy">{YEARS_IN_BUSINESS}+ years of uniform making</span>
                 <span className="text-xs text-muted">In-house embroidery & printing</span>
               </span>
             </div>
