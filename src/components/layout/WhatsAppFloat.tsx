@@ -10,6 +10,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Chat with us on WhatsApp (${contact.whatsapp.display})`}
+      id="whatsapp-float"
       className="group fixed right-4 bottom-4 z-30 flex items-center gap-2 rounded-full bg-whatsapp p-3.5 text-white shadow-overlay transition-transform hover:scale-105 hover:bg-whatsapp-hover md:right-6 md:bottom-6 md:py-3 md:pr-5 md:pl-4"
     >
       <WhatsAppIcon className="size-7 md:size-6" />

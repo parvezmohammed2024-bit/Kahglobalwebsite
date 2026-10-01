@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
 import { updatePopup } from '@/config/site';
 import { whatsappUrl } from '@/lib/whatsapp';
+import { showUpdateBar } from '@/lib/updateNotice';
 import { buttonClasses } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
@@ -37,6 +37,7 @@ export function UpdatePopup({ delayMs }: { delayMs: number }) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const primaryRef = useRef<HTMLAnchorElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const finishedRef = useRef(false);
 
   // Schedule the popup once per visit.
   useEffect(() => {
@@ -68,15 +69,24 @@ export function UpdatePopup({ delayMs }: { delayMs: number }) {
     };
   }, [visible]);
 
+  // Final step of closing: unmount, reveal the bottom bar, restore focus.
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    setPhase('hidden');
+    showUpdateBar();
+    returnFocusRef.current?.focus?.();
+  }, []);
+
   const close = useCallback(() => {
     markSeen();
     setPhase((p) => (p === 'open' ? 'closing' : p));
-  }, []);
+    // Fallback in case the exit animation's animationend never fires.
+    window.setTimeout(finish, 400);
+  }, [finish]);
 
   function onAnimationEnd() {
-    if (phase !== 'closing') return;
-    setPhase('hidden');
-    returnFocusRef.current?.focus?.();
+    if (phase === 'closing') finish();
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
@@ -133,7 +143,14 @@ export function UpdatePopup({ delayMs }: { delayMs: number }) {
         </button>
 
         <div className="mx-auto mb-5 flex flex-col items-center gap-2">
-          <Image src="/brand/logo-mark.png" alt="Kah Global" width={64} height={60} className="h-14 w-auto" />
+          {/* "KG" monogram in brand colours */}
+          <span
+            aria-hidden
+            className="relative flex size-14 items-center justify-center rounded-card bg-navy font-display text-xl font-extrabold tracking-tight text-white shadow-card"
+          >
+            KG
+            <span className="absolute bottom-2.5 h-0.5 w-5 rounded-full bg-orange" />
+          </span>
           <span className="font-display text-sm font-extrabold tracking-wide text-navy">KAH GLOBAL</span>
         </div>
 
@@ -147,18 +164,18 @@ export function UpdatePopup({ delayMs }: { delayMs: number }) {
           </p>
         </div>
 
-        <div className="mt-6 flex flex-col gap-2.5 sm:flex-row-reverse">
+        <div className="mt-6 flex w-full flex-col gap-2.5">
           <a
             ref={primaryRef}
             href={whatsappUrl(updatePopup.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
-            className={buttonClasses('whatsapp', 'lg', 'w-full sm:flex-1')}
+            className={buttonClasses('whatsapp', 'md', 'w-full')}
           >
             <WhatsAppIcon /> {updatePopup.whatsappLabel}
           </a>
-          <button type="button" onClick={close} className={buttonClasses('outline', 'lg', 'w-full sm:flex-1')}>
+          <button type="button" onClick={close} className={buttonClasses('outline', 'md', 'w-full')}>
             {updatePopup.continueLabel}
           </button>
         </div>

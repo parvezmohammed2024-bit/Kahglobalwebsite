@@ -143,6 +143,42 @@
   }
 }
 
+/*
+ * "Website in progress" bottom bar (src/components/layout/UpdateBar.tsx).
+ * Shown when <html data-update-bar="on"> — set by src/lib/updateNotice.ts.
+ * Unlayered so it overrides utility classes.
+ */
+:root {
+  --update-bar-h: 2.375rem; /* 38px */
+}
+#whatsapp-float {
+  transition-property: transform, bottom;
+  transition-duration: 250ms;
+}
+html[data-update-bar='on'] #update-bar {
+  display: flex;
+  animation: update-bar-up 300ms ease-out;
+}
+@keyframes update-bar-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+html[data-update-bar='on'] body {
+  padding-bottom: var(--update-bar-h);
+}
+html[data-update-bar='on'] #whatsapp-float {
+  bottom: calc(var(--update-bar-h) + 1rem);
+}
+@media (width >= 48rem) {
+  html[data-update-bar='on'] #whatsapp-float {
+    bottom: calc(var(--update-bar-h) + 1.5rem);
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
