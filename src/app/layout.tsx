@@ -5,9 +5,8 @@ import { CORE_KEYWORDS } from '@/lib/seo';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
-import { UpdateBanner } from '@/components/layout/UpdateBanner';
-import { updateBannerInitScript } from '@/lib/updateBanner';
-import { SHOW_UPDATE_BANNER } from '@/config/site';
+import { UpdatePopup } from '@/components/layout/UpdatePopup';
+import { POPUP_DELAY_MS, SHOW_UPDATE_POPUP } from '@/config/site';
 import { JsonLd } from '@/components/ui/JsonLd';
 import './globals.css';
 
@@ -118,18 +117,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         <JsonLd data={localBusiness} />
-        {SHOW_UPDATE_BANNER && (
-          <>
-            <script dangerouslySetInnerHTML={{ __html: updateBannerInitScript }} />
-            <UpdateBanner />
-          </>
-        )}
         <Header />
         <main id="main" className="flex-1">
           {children}
         </main>
         <Footer />
         <WhatsAppFloat />
+        {SHOW_UPDATE_POPUP && <UpdatePopup delayMs={POPUP_DELAY_MS} />}
       </body>
     </html>
   );

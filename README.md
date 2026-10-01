@@ -47,8 +47,8 @@ Optional: copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` (de
 Anything not yet confirmed is marked **`[PLACEHOLDER]`** — search the project for that text and replace it before
 launch. Image slots without a photo show a neutral grey card with the logo mark — see `IMAGES.md`.
 
-The "website is being updated" notice at the top of every page is switched on/off with `SHOW_UPDATE_BANNER` in
-`src/config/site.ts`.
+The "we're updating our website" popup (shown once per visit after a short delay) is controlled by
+`SHOW_UPDATE_POPUP` and `POPUP_DELAY_MS` in `src/config/site.ts`; its wording is in the same file.
 
 ### Images
 
