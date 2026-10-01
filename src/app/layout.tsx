@@ -1,142 +1,127 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata, Viewport } from 'next';
+import { Inter, Manrope } from 'next/font/google';
+import { company, contact, SITE_URL, social } from '@/data/site';
+import { CORE_KEYWORDS } from '@/lib/seo';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
+import { JsonLd } from '@/components/ui/JsonLd';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const BASE_URL = "https://www.kahglobal.com.my";
+const defaultTitle = 'Uniform Supplier Malaysia | Corporate Uniform Kuala Lumpur | Kah Global';
+const defaultDescription =
+  'Kah Global Sdn Bhd — uniform supplier in Cheras, Kuala Lumpur since 2014. Ready-made & custom-made corporate uniforms (baju korporat), polo shirts and t-shirts with embroidery, silkscreen, sublimation & DTF printing.';
 
 export const metadata: Metadata = {
-  title: "Kah Global Uniform Sdn Bhd | Premium Uniforms Malaysia",
-  description:
-    "Kah Global Uniform Sdn Bhd — Malaysia's trusted uniform manufacturer in Cheras, Selangor. Corporate, school, hotel & industrial uniforms. 10+ years experience.",
-  keywords: [
-    "uniform malaysia",
-    "corporate uniform",
-    "sekolah uniform",
-    "hotel uniform",
-    "cheras selangor",
-    "uniform manufacturer malaysia",
-    "industrial uniform",
-    "school uniform malaysia",
-  ],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-  alternates: {
-    canonical: BASE_URL,
-  },
+  metadataBase: new URL(SITE_URL),
+  title: { default: defaultTitle, template: '%s | Kah Global Sdn Bhd' },
+  description: defaultDescription,
+  keywords: CORE_KEYWORDS,
+  applicationName: company.name,
+  authors: [{ name: company.name }],
+  formatDetection: { telephone: true, email: true, address: true },
+  robots: { index: true, follow: true },
+  alternates: { canonical: SITE_URL },
   openGraph: {
-    type: "website",
-    url: BASE_URL,
-    siteName: "Kah Global Uniform Sdn Bhd",
-    title: "Kah Global Uniform Sdn Bhd | Premium Uniforms Malaysia",
-    description:
-      "Malaysia's trusted uniform manufacturer in Cheras, Selangor. Corporate, school, hotel & industrial uniforms. 10+ years experience.",
-    images: [
-      {
-        url: `${BASE_URL}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Kah Global Uniform Sdn Bhd",
-      },
-    ],
+    type: 'website',
+    locale: 'en_MY',
+    url: SITE_URL,
+    siteName: company.name,
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: company.name }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Kah Global Uniform Sdn Bhd | Premium Uniforms Malaysia",
-    description:
-      "Malaysia's trusted uniform manufacturer in Cheras, Selangor. Corporate, school, hotel & industrial uniforms. 10+ years experience.",
-    images: [`${BASE_URL}/og-image.jpg`],
+    card: 'summary_large_image',
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ['/og-image.jpg'],
   },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 5,
-  themeColor: '#0A1F44',
+  themeColor: '#0b2545',
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ClothingStore"],
-  name: "Kah Global Uniform Sdn Bhd",
-  legalName: "Kah Global Sdn Bhd (1084190-X)",
-  description:
-    "Malaysia's trusted uniform manufacturer specialising in corporate, school, hotel and industrial uniforms. Based in Cheras, Wilayah Persekutuan Kuala Lumpur.",
-  url: BASE_URL,
-  logo: `${BASE_URL}/logo.png`,
-  image: `${BASE_URL}/og-image.jpg`,
-  telephone: "+601123305012",
-  email: "info@kahglobal.com.my",
-  priceRange: "$$",
-  openingHours: ["Mo-Fr 08:00-17:00"],
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ClothingStore'],
+  '@id': `${SITE_URL}/#business`,
+  name: company.name,
+  legalName: `${company.name} (${company.registration})`,
+  description: company.description,
+  foundingDate: String(company.foundedYear),
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/logo-full.png`,
+  image: `${SITE_URL}/og-image.jpg`,
+  telephone: contact.office.tel,
+  email: contact.email,
   address: {
-    "@type": "PostalAddress",
-    streetAddress: "Jalan Bunga Melur 3, Taman Suria Jaya",
-    addressLocality: "Cheras",
-    addressRegion: "Wilayah Persekutuan Kuala Lumpur",
-    postalCode: "56000",
-    addressCountry: "MY",
+    '@type': 'PostalAddress',
+    streetAddress: contact.address.street,
+    addressLocality: contact.address.city,
+    addressRegion: contact.address.state,
+    postalCode: contact.address.postcode,
+    addressCountry: contact.address.country,
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 3.0838,
-    longitude: 101.7285,
-  },
-  hasMap: "https://maps.google.com/?q=Taman+Suria+Jaya+Cheras+Kuala+Lumpur",
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+601123305012",
-    contactType: "customer service",
-    availableLanguage: ["English", "Malay"],
-    contactOption: "TollFree",
-  },
-  areaServed: {
-    "@type": "Country",
-    name: "Malaysia",
-  },
-  knowsAbout: [
-    "Corporate Uniforms",
-    "School Uniforms",
-    "Hotel Uniforms",
-    "Industrial Safety Wear",
-    "Custom Embroidery",
-    "Uniform Manufacturing",
+  geo: { '@type': 'GeoCoordinates', latitude: contact.geo.lat, longitude: contact.geo.lng },
+  hasMap: contact.mapUrl,
+  openingHours: contact.openingHoursSchema,
+  areaServed: { '@type': 'Country', name: 'Malaysia' },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: `+${contact.whatsapp.number}`,
+      contactType: 'sales',
+      availableLanguage: ['English', 'Malay'],
+    },
+    {
+      '@type': 'ContactPoint',
+      telephone: contact.office.tel,
+      contactType: 'customer service',
+      availableLanguage: ['English', 'Malay'],
+    },
   ],
+  knowsAbout: [
+    'Corporate uniforms',
+    'Ready-made uniforms',
+    'Custom-made uniforms',
+    'Embroidery',
+    'Silkscreen printing',
+    'Dye-sublimation printing',
+    'DTF printing',
+  ],
+  sameAs: Object.values(social).filter(Boolean),
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en-MY" className={`${inter.variable} ${manrope.variable}`}>
+      <body className="flex min-h-dvh flex-col">
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-control bg-navy px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to content
+        </a>
+        <JsonLd data={localBusiness} />
+        <Header />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppFloat />
+      </body>
     </html>
   );
 }
