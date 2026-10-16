@@ -3,6 +3,7 @@ import { company, SITE_URL } from '@/data/site';
 
 /** Core search phrases the site targets. Pages add their own specific terms. */
 export const CORE_KEYWORDS = [
+  'uniform manufacturer Malaysia',
   'uniform supplier Malaysia',
   'corporate uniform Kuala Lumpur',
   'baju korporat',
@@ -22,7 +23,7 @@ type PageSeo = {
   absoluteTitle?: boolean;
 };
 
-const DEFAULT_IMAGE = { url: '/og-image.jpg', alt: `${company.name} — uniform supplier in Cheras, Kuala Lumpur` };
+const DEFAULT_IMAGE = { url: '/og-image.jpg', alt: `${company.name} — uniform manufacturer in Cheras, Kuala Lumpur` };
 
 export function pageMetadata({
   title,

@@ -9,10 +9,10 @@ import { ButtonAnchor } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 export const metadata = pageMetadata({
-  title: 'Contact Kah Global — Uniform Supplier in Cheras, Kuala Lumpur',
+  title: 'Contact Kah Global — Uniform Manufacturer in Cheras, Kuala Lumpur',
   description: `Contact ${company.name} in Cheras, Kuala Lumpur. WhatsApp ${contact.whatsapp.display}, call ${contact.mobile.display} or ${contact.office.display}, or email ${contact.email} for uniform quotations.`,
   path: '/contact',
-  keywords: ['uniform shop Cheras', 'uniform supplier near me KL', 'Kah Global contact'],
+  keywords: ['uniform manufacturer Cheras', 'uniform supplier near me KL', 'Kah Global contact'],
 });
 
 const channels = [

@@ -136,7 +136,7 @@ export async function Footer() {
           <p>
             © {CURRENT_YEAR} {company.name} ({company.registration}). All rights reserved.
           </p>
-          <p>Uniform supplier in Cheras, Kuala Lumpur, Malaysia.</p>
+          <p>Uniform & traditional wear manufacturer in Cheras, Kuala Lumpur, Malaysia.</p>
         </div>
       </div>
     </footer>

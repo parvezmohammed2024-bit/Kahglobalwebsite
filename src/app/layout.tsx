@@ -13,9 +13,9 @@ const manrope = Manrope({
   display: 'swap',
 });
 
-const defaultTitle = 'Uniform Supplier Malaysia | Corporate Uniform Kuala Lumpur | Kah Global';
+const defaultTitle = 'Uniform Manufacturer Malaysia | School, Hotel & Corporate Uniforms | Kah Global';
 const defaultDescription =
-  'Kah Global Sdn Bhd — uniform supplier in Cheras, Kuala Lumpur since 2014. Ready-made & custom-made corporate uniforms (baju korporat), polo shirts and t-shirts with embroidery, silkscreen, sublimation & DTF printing.';
+  'Kah Global Sdn Bhd — uniform manufacturer in Cheras, Kuala Lumpur since 2014. School, hotel, restaurant and corporate uniforms, sublimation t-shirts, Baju Melayu, Baju Kurung and Malay traditional wear, with embroidery and printing.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

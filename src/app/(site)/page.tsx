@@ -47,7 +47,7 @@ const pathways = [
     moq: `MOQ ${terms.customMadeMoq} pcs`,
     title: 'Custom-Made Uniforms',
     description:
-      'Your design, made in our Cheras workshop — choose the fabric, cut, colours, collar and details to match your brand and work environment.',
+      'Your own design, manufactured in our Cheras facility — choose the fabric, cut, colours and details to match your brand.',
     points: ['Fabric, cut and colour tailored to you', 'Colour blocking, piping and custom details', 'Physical sample before bulk production'],
     imageKey: 'home-path-custom' as const,
     imageAlt: 'Fabric swatches and pattern pieces on a design table',
