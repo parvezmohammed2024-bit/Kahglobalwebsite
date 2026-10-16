@@ -1,14 +1,6 @@
-import type { CategorySlug } from './products';
+import type { SiteImageKey } from '@/lib/catalog/types';
 
-export type IndustryIcon =
-  | 'building'
-  | 'utensils'
-  | 'factory'
-  | 'graduation'
-  | 'party'
-  | 'hotel'
-  | 'health'
-  | 'truck';
+export type IndustryIcon = 'graduation' | 'hotel' | 'utensils' | 'building' | 'trophy' | 'moon';
 
 export type Industry = {
   slug: string;
@@ -17,100 +9,83 @@ export type Industry = {
   summary: string;
   description: string;
   needs: string[];
-  recommended: CategorySlug[];
-  image?: string;
-  imageAlt?: string;
+  /** Category slugs (see the catalogue in /admin) */
+  recommended: string[];
+  imageKey: SiteImageKey;
+  imageAlt: string;
 };
 
 export const industries: Industry[] = [
   {
+    slug: 'schools',
+    name: 'Schools',
+    icon: 'graduation',
+    summary: 'Baju sekolah, PE & house tees',
+    description:
+      'School uniforms, baju kurung sekolah, PE attire and sports-house t-shirts — manufactured in your school colours with the school badge.',
+    needs: ['School colours and badge', 'Children’s and adult sizes', 'Durable, easy-iron fabrics'],
+    recommended: ['school-uniforms', 'sublimation-tshirts', 'baju-kurung'],
+    imageKey: 'industry-school',
+    imageAlt: 'Students wearing school uniforms',
+  },
+  {
+    slug: 'hotels',
+    name: 'Hotels & Hospitality',
+    icon: 'hotel',
+    summary: 'Front office, housekeeping & F&B',
+    description:
+      'Coordinated uniforms for every hotel department — front office, concierge, housekeeping, banquet and F&B — tailored for long shifts.',
+    needs: ['Polished front-of-house look', 'Colours coordinated by department', 'Comfortable for long shifts'],
+    recommended: ['hotel-uniforms', 'restaurant-uniforms', 'baju-melayu', 'baju-kurung'],
+    imageKey: 'industry-hotel',
+    imageAlt: 'Hotel staff in matching uniforms',
+  },
+  {
+    slug: 'restaurants',
+    name: 'Restaurants & F&B',
+    icon: 'utensils',
+    summary: 'Chef jackets, crew tees & aprons',
+    description:
+      'Chef jackets, kitchen wear, crew t-shirts, aprons and caps for restaurants, cafés and central kitchens — branded with your logo.',
+    needs: ['Breathable for hot kitchens', 'Easy-wash, stain-friendly colours', 'Matching aprons and caps'],
+    recommended: ['restaurant-uniforms', 'corporate-uniforms'],
+    imageKey: 'industry-restaurant',
+    imageAlt: 'Chef and restaurant crew in uniforms',
+  },
+  {
     slug: 'corporate',
     name: 'Corporate & Offices',
     icon: 'building',
-    summary: 'Polos, Oxford shirts & jackets',
+    summary: 'Polos, office shirts & jackets',
     description:
-      'Consistent, professional uniforms for front office, sales, customer service and management teams — with embroidered logos that stay sharp.',
-    needs: ['Smart, consistent look across branches', 'Embroidered logos', 'Male, female & modest cuts'],
-    recommended: ['polo-shirts', 'corporate-shirts', 'jackets', 'muslimah'],
-    image: '/images/industries/corporate.jpg',
-    imageAlt: 'Office team wearing matching corporate shirts',
-  },
-  {
-    slug: 'food-beverage',
-    name: 'Food & Beverage',
-    icon: 'utensils',
-    summary: 'Crew tees, aprons & caps',
-    description:
-      'Comfortable, easy-wash uniforms for cafés, restaurants, kiosks and central kitchens — matching tees, aprons and caps that carry your brand.',
-    needs: ['Breathable fabrics for hot kitchens', 'Easy-wash, stain-friendly colours', 'Aprons and caps to complete the look'],
-    recommended: ['t-shirts', 'polo-shirts', 'aprons-caps'],
-    image: '/images/industries/food-beverage.jpg',
-    imageAlt: 'Café barista in a branded uniform and apron',
-  },
-  {
-    slug: 'factories',
-    name: 'Factories & Manufacturing',
-    icon: 'factory',
-    summary: 'Workwear, reflective & vests',
-    description:
-      'Durable workwear for production lines, warehouses and technical crews, with reflective options for visibility and heavy fabrics that survive frequent washing.',
-    needs: ['Heavy-duty, long-lasting fabrics', 'Reflective tape & hi-vis options', 'Name or department printing'],
-    recommended: ['industrial', 'f1-shirts', 'polo-shirts'],
-    image: '/images/industries/factory.jpg',
-    imageAlt: 'Factory worker in heavy-duty workwear on the production floor',
-  },
-  {
-    slug: 'schools',
-    name: 'Schools & Universities',
-    icon: 'graduation',
-    summary: 'House jerseys, club & PE tees',
-    description:
-      'Sports house jerseys, club t-shirts, PE attire and event tees for schools, colleges and universities — with full-colour sublimation for team designs.',
-    needs: ['Bright, full-colour designs', 'Wide size range for students', 'Budget-friendly bulk pricing'],
-    recommended: ['jerseys', 't-shirts', 'polo-shirts'],
+      'Consistent, professional uniforms for offices, banks, showrooms and service teams — with embroidered logos that stay sharp.',
+    needs: ['Consistent look across branches', 'Embroidered company logo', 'Male, female & modest cuts'],
+    recommended: ['corporate-uniforms', 'baju-melayu', 'baju-kurung'],
+    imageKey: 'industry-corporate',
+    imageAlt: 'Office team wearing corporate uniforms',
   },
   {
     slug: 'events',
-    name: 'Events & Roadshows',
-    icon: 'party',
-    summary: 'Event tees & crew uniforms',
+    name: 'Sports, Clubs & Events',
+    icon: 'trophy',
+    summary: 'Sublimation jerseys & event tees',
     description:
-      'Fast turnaround t-shirts and crew uniforms for corporate events, family days, runs, launches and roadshows — printed with your campaign artwork.',
-    needs: ['Fast turnaround for event dates', 'Cost-effective bulk printing', 'Quick-dry fabrics for outdoor events'],
-    recommended: ['t-shirts', 'jerseys', 'polo-shirts'],
-    image: '/images/industries/events.jpg',
-    imageAlt: 'Event crew in matching printed t-shirts',
+      'Full-colour sublimation jerseys and t-shirts for sports teams, clubs, corporate runs, family days and launches.',
+    needs: ['Unlimited colours and designs', 'Names and numbers', 'Fast turnaround for event dates'],
+    recommended: ['sublimation-tshirts', 'corporate-uniforms'],
+    imageKey: 'industry-events',
+    imageAlt: 'Team wearing sublimation jerseys',
   },
   {
-    slug: 'hospitality',
-    name: 'Hospitality & Retail',
-    icon: 'hotel',
-    summary: 'Front desk, retail & housekeeping',
+    slug: 'festive',
+    name: 'Festive & Raya Collections',
+    icon: 'moon',
+    summary: 'Baju Melayu, kurung & accessories',
     description:
-      'Neat, comfortable uniforms for hotels, resorts, retail stores and showrooms — designed to look good through long shifts.',
-    needs: ['Polished front-of-house look', 'Comfortable for long shifts', 'Coordinated colours by department'],
-    recommended: ['corporate-shirts', 'polo-shirts', 'muslimah', 'aprons-caps'],
-  },
-  {
-    slug: 'healthcare',
-    name: 'Clinics & Healthcare',
-    icon: 'health',
-    summary: 'Clinic staff polos & blouses',
-    description:
-      'Clean, professional uniforms for clinic, pharmacy and wellness staff, with modest-cut options and fabrics that handle frequent washing.',
-    needs: ['Hygienic, easy-care fabrics', 'Modest-cut options', 'Clear staff identification'],
-    recommended: ['polo-shirts', 'muslimah', 'corporate-shirts'],
-  },
-  {
-    slug: 'logistics',
-    name: 'Logistics & Security',
-    icon: 'truck',
-    summary: 'Field polos, jackets & vests',
-    description:
-      'Practical uniforms for delivery riders, drivers, security guards and field technicians — quick-dry, reflective and easy to identify.',
-    needs: ['Quick-dry for outdoor work', 'Reflective and hi-vis options', 'Jackets for riders'],
-    recommended: ['polo-shirts', 'jackets', 'industrial'],
-    image: '/images/industries/logistics.jpg',
-    imageAlt: 'Delivery rider in a branded polo shirt beside a vehicle',
+      'Matching Baju Melayu, Baju Kurung, samping, songkok, kebaya and tudung for corporate Raya, staff gifts and family sets.',
+    needs: ['Matching team and family sets', 'Your choice of fabric and colour', 'Complete sets with accessories'],
+    recommended: ['baju-melayu', 'baju-kurung', 'malay-mens-wear', 'malay-ladies-wear'],
+    imageKey: 'industry-festive',
+    imageAlt: 'Family wearing matching Baju Melayu and Baju Kurung',
   },
 ];

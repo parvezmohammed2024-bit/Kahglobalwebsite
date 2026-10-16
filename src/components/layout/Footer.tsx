@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { company, contact, CURRENT_YEAR, mainNav, social } from '@/data/site';
-import { categories } from '@/data/products';
+import { getCatalog } from '@/lib/catalog/store';
+import { visibleCategories } from '@/lib/catalog/query';
 import { printingMethods } from '@/data/services';
 import { whatsappUrl, DEFAULT_WHATSAPP_MESSAGE } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { Logo } from './Logo';
 
-export function Footer() {
+export async function Footer() {
+  const categories = visibleCategories(await getCatalog());
   const socials = Object.entries(social).filter(([, url]) => url);
 
   return (
@@ -35,11 +37,11 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-2">
-          <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-white">Uniforms</h2>
+          <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-white">Products</h2>
           <ul className="flex flex-col gap-2.5 text-sm">
-            {categories.slice(0, 6).map((c) => (
+            {categories.slice(0, 9).map((c) => (
               <li key={c.slug}>
-                <Link href={`/ready-made?category=${c.slug}`} className="hover:text-white">
+                <Link href={`/products?category=${c.slug}`} className="hover:text-white">
                   {c.name}
                 </Link>
               </li>
@@ -51,7 +53,7 @@ export function Footer() {
           <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-white">Services</h2>
           <ul className="flex flex-col gap-2.5 text-sm">
             <li>
-              <Link href="/ready-made" className="hover:text-white">Ready-Made Uniforms</Link>
+              <Link href="/products" className="hover:text-white">All Products</Link>
             </li>
             <li>
               <Link href="/custom-made" className="hover:text-white">Custom-Made Uniforms</Link>

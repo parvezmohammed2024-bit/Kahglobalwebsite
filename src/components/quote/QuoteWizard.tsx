@@ -3,13 +3,14 @@
 import { useRef, useState, type ChangeEvent, type DragEvent, type ReactNode } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Check, CircleAlert, FileUp, Mail, RotateCcw, X } from 'lucide-react';
-import { categories, COLOURS, products, SIZES, type Size } from '@/data/products';
-import { logoPlacements, printingMethods } from '@/data/services';
-import { contact, terms } from '@/data/site';
+import { logoPlacements } from '@/data/services';
+import { contact } from '@/data/site';
+import { ADD_ONS } from '@/lib/catalog/types';
 import {
   FABRIC_OPTIONS,
   QUANTITY_RANGES,
   STATES,
+  SIZES,
   TRACK_LABELS,
   URGENCY_LABELS,
   buildQuoteMessage,
@@ -18,7 +19,9 @@ import {
   totalSizes,
   validateAll,
   validateStep,
-  type PrintingChoice,
+  hasLogoAddOn,
+  type QuoteCatalog,
+  type Size,
   type ProductionTrack,
   type QuoteChannel,
   type QuoteErrors,
@@ -28,10 +31,23 @@ import {
 import { buttonClasses } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
+const SWATCHES = [
+  { name: 'White', hex: '#ffffff' },
+  { name: 'Black', hex: '#111111' },
+  { name: 'Navy', hex: '#14213d' },
+  { name: 'Royal Blue', hex: '#1d4ed8' },
+  { name: 'Maroon', hex: '#7f1d1d' },
+  { name: 'Red', hex: '#c81e1e' },
+  { name: 'Green', hex: '#14532d' },
+  { name: 'Grey', hex: '#9ca3af' },
+  { name: 'Cream', hex: '#f3ead7' },
+  { name: 'Gold', hex: '#c9a227' },
+];
+
 const STEPS = [
-  { title: 'Product & quantity', hint: 'Garment, type & volume' },
-  { title: 'Branding & sizes', hint: 'Printing, logo & sizes' },
-  { title: 'Company & contact', hint: 'Details & delivery' },
+  { title: 'Product & quantity', hint: 'What you need & how many' },
+  { title: 'Add-ons & sizes', hint: 'Embroidery, printing, logo' },
+  { title: 'Contact & delivery', hint: 'Your details' },
 ];
 
 const MAX_LOGO_MB = 25;
@@ -51,9 +67,10 @@ const STEP_OF_FIELD: Partial<Record<keyof QuoteRequest, number>> = {
   email: 3,
 };
 
-export function QuoteWizard() {
+export function QuoteWizard({ catalog }: { catalog: QuoteCatalog }) {
+  const { categories, products } = catalog;
   const searchParams = useSearchParams();
-  const [quote, setQuote] = useState<QuoteRequest>(() => quoteFromParams(new URLSearchParams(searchParams.toString())));
+  const [quote, setQuote] = useState<QuoteRequest>(() => quoteFromParams(new URLSearchParams(searchParams.toString()), catalog));
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -86,7 +103,7 @@ export function QuoteWizard() {
       goTo(STEP_OF_FIELD[firstInvalid] ?? 1);
       return;
     }
-    const result = submitQuote(quote, channel);
+    const result = submitQuote(quote, catalog, channel);
     if (channel === 'whatsapp') window.open(result.url, '_blank', 'noopener,noreferrer');
     else window.location.href = result.url;
     setSent({ channel, url: result.url });
@@ -115,6 +132,8 @@ export function QuoteWizard() {
     update('logoFileName', '');
   }
 
+  const selectedProduct = products.find((p) => p.slug === quote.productSlug);
+  const availableAddOns = selectedProduct ? ADD_ONS.filter((a) => selectedProduct.addOns.includes(a.id)) : ADD_ONS;
   const productOptions = products.filter((p) => !quote.garmentType || p.category === quote.garmentType);
   const sizeTotal = totalSizes(quote.sizes);
 
@@ -159,7 +178,7 @@ export function QuoteWizard() {
           <details className="mt-4 w-full max-w-lg rounded-control border border-line bg-surface text-left">
             <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy">View your request</summary>
             <pre className="overflow-x-auto px-4 pb-4 font-sans text-xs whitespace-pre-wrap text-ink">
-              {buildQuoteMessage(quote).replace(/\*/g, '')}
+              {buildQuoteMessage(quote, catalog).replace(/\*/g, '')}
             </pre>
           </details>
         </div>
@@ -211,7 +230,7 @@ export function QuoteWizard() {
 
             <Field label="What do you need?" error={errors.garmentType} required>
               <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3">
-                {[...categories.map((c) => ({ id: c.slug as string, name: c.name, blurb: c.blurb })), { id: 'custom', name: 'Custom cut & sew', blurb: 'Made to your design' }].map(
+                {[...categories.map((c) => ({ id: c.slug, name: c.name, blurb: '' })), { id: 'custom', name: 'Something else', blurb: 'Custom design' }].map(
                   (opt) => (
                     <OptionCard
                       key={opt.id}
@@ -238,7 +257,11 @@ export function QuoteWizard() {
                   id="productSlug"
                   className={inputClass}
                   value={quote.productSlug}
-                  onChange={(e) => update('productSlug', e.target.value)}
+                  onChange={(e) => {
+                    update('productSlug', e.target.value);
+                    const picked = products.find((p) => p.slug === e.target.value);
+                    if (picked) update('addOns', quote.addOns.filter((x) => picked.addOns.includes(x)));
+                  }}
                 >
                   <option value="">Not sure / any suitable product</option>
                   {productOptions.map((p) => (
@@ -250,7 +273,7 @@ export function QuoteWizard() {
               </Field>
             )}
 
-            <Field label="Ready-made or custom-made?">
+            <Field label="Our design or yours?">
               <div className="grid gap-2.5 md:grid-cols-3">
                 {(Object.keys(TRACK_LABELS) as ProductionTrack[]).map((t) => (
                   <OptionCard
@@ -258,13 +281,13 @@ export function QuoteWizard() {
                     name="track"
                     checked={quote.track === t}
                     onChange={() => update('track', t)}
-                    title={TRACK_LABELS[t].split(' (')[0]}
+                    title={t === 'our-design' ? 'Your standard design' : t === 'custom-made' ? 'Our own design' : 'Not sure yet'}
                     description={
-                      t === 'ready-made'
-                        ? `In stock + logo · ~${terms.readyMadeLeadTime}`
+                      t === 'our-design'
+                        ? 'Made in our colours with our logo'
                         : t === 'custom-made'
-                          ? `Your design · ~${terms.customMadeLeadTime}`
-                          : 'We will recommend the best option'
+                          ? 'Custom-made to our specification'
+                          : 'Please recommend the best option'
                     }
                   />
                 ))}
@@ -275,7 +298,7 @@ export function QuoteWizard() {
               label="Estimated quantity"
               error={errors.quantityRange}
               required
-              hint={`MOQ: ${terms.readyMadeMoq} pcs ready-made · ${terms.customMadeMoq} pcs custom-made`}
+              hint={selectedProduct ? `MOQ for this product: ${selectedProduct.moq} pcs` : 'Minimum order depends on the product'}
             >
               <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
                 {QUANTITY_RANGES.map((r) => (
@@ -314,28 +337,38 @@ export function QuoteWizard() {
 
         {step === 2 && (
           <div className="flex flex-col gap-8">
-            <StepHeader n={2} title="Branding, colour & sizes" />
+            <StepHeader n={2} title="Add-ons, logo, colour & sizes" />
 
-            <Field label="Logo / printing method">
+            <Field label="Add-ons" hint="Select all you need — priced on your quotation">
               <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  ...printingMethods.map((m) => ({ id: m.id as PrintingChoice, name: m.name, tagline: m.tagline })),
-                  { id: 'not-sure' as PrintingChoice, name: 'Not sure', tagline: 'Recommend the best method' },
-                  { id: 'none' as PrintingChoice, name: 'No branding', tagline: 'Plain garments only' },
-                ].map((m) => (
-                  <OptionCard
-                    key={m.id}
-                    name="printingMethod"
-                    checked={quote.printingMethod === m.id}
-                    onChange={() => update('printingMethod', m.id)}
-                    title={m.name}
-                    description={m.tagline}
-                  />
-                ))}
+                {availableAddOns.map((a) => {
+                  const checked = quote.addOns.includes(a.id);
+                  return (
+                    <label
+                      key={a.id}
+                      className={`relative flex cursor-pointer items-start gap-3 rounded-control border p-3.5 transition has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-orange ${
+                        checked ? 'border-orange bg-orange-soft ring-1 ring-orange' : 'border-line bg-white hover:border-line-strong hover:bg-surface'
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() =>
+                          update('addOns', checked ? quote.addOns.filter((x) => x !== a.id) : [...quote.addOns, a.id])
+                        }
+                        className="mt-0.5 size-4 accent-orange"
+                      />
+                      <span className="flex flex-col gap-0.5">
+                        <span className="text-sm font-semibold text-navy">{a.name}</span>
+                        <span className="text-xs text-muted">{a.description}</span>
+                      </span>
+                    </label>
+                  );
+                })}
               </div>
             </Field>
 
-            {quote.printingMethod !== 'none' && (
+            {hasLogoAddOn(quote) && (
               <Field label="Logo position(s)" error={errors.placements} hint="Select all that apply">
                 <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
                   {logoPlacements.map((p) => {
@@ -363,7 +396,7 @@ export function QuoteWizard() {
               </Field>
             )}
 
-            {quote.printingMethod !== 'none' && (
+            {hasLogoAddOn(quote) && (
               <Field label="Company logo / artwork" hint={`AI, EPS, PDF, SVG, PNG or JPG · max ${MAX_LOGO_MB} MB`}>
                 {logoFile || quote.logoFileName ? (
                   <div className="flex items-center justify-between gap-3 rounded-control border border-emerald-200 bg-emerald-50 p-4">
@@ -422,7 +455,7 @@ export function QuoteWizard() {
             <Field label="Garment colour" hint="Choose a colour or type your own (e.g. Pantone code)">
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap gap-2.5">
-                  {Object.values(COLOURS).map((c) => {
+                  {SWATCHES.map((c) => {
                     const active = quote.colour === c.name;
                     return (
                       <button
@@ -452,7 +485,7 @@ export function QuoteWizard() {
 
             <Field label="Size breakdown (optional)" hint="An estimate is fine — you can adjust before production">
               <div className="overflow-x-auto">
-                <div className="grid min-w-[34rem] grid-cols-9 overflow-hidden rounded-control border border-line">
+                <div className="grid min-w-[36rem] grid-cols-10 overflow-hidden rounded-control border border-line">
                   {SIZES.map((s) => (
                     <label key={s} className="flex flex-col border-r border-line last:border-r-0">
                       <span className="bg-navy py-1.5 text-center text-xs font-semibold text-white">{s}</span>

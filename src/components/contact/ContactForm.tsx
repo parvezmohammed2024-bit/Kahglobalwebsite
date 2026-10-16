@@ -7,7 +7,7 @@ import { whatsappUrl } from '@/lib/whatsapp';
 import { buttonClasses } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
-const TOPICS = ['Quotation', 'Ready-made uniforms', 'Custom-made uniforms', 'Printing / embroidery', 'Existing order', 'Other'];
+const TOPICS = ['Quotation', 'School uniforms', 'Hotel / restaurant uniforms', 'Corporate uniforms', 'Sublimation t-shirts', 'Baju Melayu / Baju Kurung', 'Existing order', 'Other'];
 
 type Form = { name: string; company: string; phone: string; email: string; topic: string; message: string };
 
