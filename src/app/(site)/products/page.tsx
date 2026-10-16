@@ -7,6 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 import { whatsappUrl } from '@/lib/whatsapp';
 import { PageHero } from '@/components/sections/PageHero';
 import { CatalogView } from '@/components/catalog/CatalogView';
+import { ProductCard } from '@/components/cards/ProductCard';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { ButtonAnchor, ButtonLink } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
@@ -23,6 +24,7 @@ export default async function ProductsPage() {
   const catalog = await getCatalog();
   const categories = visibleCategories(catalog);
   const products = visibleProducts(catalog);
+  const names = Object.fromEntries(categories.map((c) => [c.slug, c.name]));
 
   return (
     <>
@@ -55,7 +57,16 @@ export default async function ProductsPage() {
           </Link>
         </div>
 
-        <Suspense fallback={<div className="h-96 animate-pulse rounded-card bg-surface" aria-hidden />}>
+        {/* Fallback = full server-rendered grid, so every product is in the HTML for search engines. */}
+        <Suspense
+          fallback={
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {products.map((p) => (
+                <ProductCard key={p.slug} product={p} categoryName={names[p.category] ?? ''} />
+              ))}
+            </div>
+          }
+        >
           <CatalogView categories={categories} products={products} />
         </Suspense>
 
