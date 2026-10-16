@@ -6,13 +6,12 @@ import { visibleCategories } from '@/lib/catalog/query';
 import { printingMethods } from '@/data/services';
 import { whatsappUrl, DEFAULT_WHATSAPP_MESSAGE } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { SocialIcon, SOCIAL_LABELS, type SocialPlatform } from '@/components/ui/SocialIcons';
 import { Logo } from './Logo';
-
-const SOCIAL_LABELS: Record<string, string> = { facebook: 'Facebook', instagram: 'Instagram', tiktok: 'TikTok' };
 
 export async function Footer() {
   const categories = visibleCategories(await getCatalog());
-  const socials = Object.entries(social).filter(([, url]) => url);
+  const socials = (Object.entries(social) as [SocialPlatform, string][]).filter(([, url]) => url);
 
   return (
     <footer className="bg-navy-950 text-sky">
@@ -124,11 +123,18 @@ export async function Footer() {
             </li>
           </ul>
           {socials.length > 0 && (
-            <ul className="mt-5 flex gap-3 text-sm">
+            <ul className="mt-5 flex gap-3">
               {socials.map(([name, url]) => (
                 <li key={name}>
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                    {SOCIAL_LABELS[name] ?? name}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${SOCIAL_LABELS[name]} (opens in a new tab)`}
+                    title={SOCIAL_LABELS[name]}
+                    className="inline-flex size-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-orange"
+                  >
+                    <SocialIcon platform={name} className="size-5" />
                   </a>
                 </li>
               ))}
