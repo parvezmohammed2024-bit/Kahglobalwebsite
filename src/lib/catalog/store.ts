@@ -11,15 +11,19 @@ import type { Catalog } from './types';
  * so CDN caching never serves stale data) and keeps the most recent versions
  * as a backup history. Reads pick the newest file.
  *
- * Without BLOB_READ_WRITE_TOKEN (local dev, or before the Blob store is
+ * Without Blob credentials (local dev, or before the Blob store is
  * connected in Vercel) the built-in DEFAULT_CATALOG is used.
  */
 
 const PREFIX = 'catalog/catalog-';
 const KEEP_VERSIONS = 15;
 
+/**
+ * Blob is connected either with a classic read-write token or, for newer
+ * stores, with BLOB_STORE_ID + Vercel's automatic OIDC credentials.
+ */
 export function blobConfigured(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 }
 
 async function listVersions() {

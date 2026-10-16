@@ -52,7 +52,7 @@ Until Blob is connected, the site shows the built-in catalogue in `src/lib/catal
 
 ### One-time setup in Vercel
 
-1. **Storage → Create → Blob** — choose *public* access and connect it to this project (adds `BLOB_READ_WRITE_TOKEN`).
+1. **Storage → Create → Blob** — choose *public* access and connect it to this project (adds `BLOB_STORE_ID`; older stores add `BLOB_READ_WRITE_TOKEN` — either works).
 2. **Settings → Environment Variables** — add `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` (32+ random characters)
    for Production (and Preview if you want to test there).
 3. **Redeploy**, then open `https://<your-domain>/admin` and log in.

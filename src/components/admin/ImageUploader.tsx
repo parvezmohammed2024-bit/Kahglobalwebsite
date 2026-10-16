@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { upload } from '@vercel/blob/client';
+import { uploadPresigned } from '@vercel/blob/client';
 import { ArrowLeft, ArrowRight, ImagePlus, LoaderCircle, Trash2 } from 'lucide-react';
 import { PLACEHOLDER_IMAGE, type CatalogImage } from '@/lib/catalog/types';
 
@@ -79,10 +79,9 @@ export function ImageUploader({
         if (!original.type.startsWith('image/')) throw new Error(`${original.name} is not an image.`);
         const file = await prepareImage(original);
         const ext = file.type === 'image/webp' ? 'webp' : file.type === 'image/png' ? 'png' : 'jpg';
-        const blob = await upload(`uploads/${folder}/${cleanName(original.name)}.${ext}`, file, {
+        const blob = await uploadPresigned(`uploads/${folder}/${cleanName(original.name)}.${ext}`, file, {
           access: 'public',
           handleUploadUrl: '/api/admin/upload',
-          contentType: file.type,
         });
         uploaded.push({ url: blob.url, alt: defaultAlt });
       } catch (err) {
