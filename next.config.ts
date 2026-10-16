@@ -9,8 +9,14 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    // Stock photos used until real Kah Global photos are supplied (see IMAGES.md)
     remotePatterns: [
+      // Photos uploaded from /admin (Vercel Blob)
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        pathname: "/**",
+      },
+      // Optional stock photos
       {
         protocol: "https",
         hostname: "images.unsplash.com",
@@ -18,6 +24,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Old catalogue URLs → new /products pages
+  redirects: async () => [
+    { source: "/ready-made", destination: "/products", permanent: true },
+    { source: "/ready-made/:slug", destination: "/products", permanent: true },
+  ],
 
   headers: async () => [
     {

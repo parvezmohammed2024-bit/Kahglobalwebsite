@@ -19,9 +19,9 @@ export const company = {
   regNew: '201401008112',
   regOld: '1084190-X',
   foundedYear: 2014,
-  tagline: 'Uniform & Apparel Manufacturer in Cheras, Kuala Lumpur',
+  tagline: 'Uniform & Traditional Wear Manufacturer in Cheras, Kuala Lumpur',
   description:
-    'Kah Global Sdn Bhd supplies ready-made and custom-made uniforms with in-house printing and embroidery for companies, F&B outlets, factories, schools and events across Malaysia.',
+    'Kah Global Sdn Bhd manufactures school, hotel, restaurant and corporate uniforms, sublimation t-shirts, Baju Melayu, Baju Kurung and Malay traditional wear — with in-house embroidery and printing — in Cheras, Kuala Lumpur.',
 } as const;
 
 /** Evaluated at build time (pages are statically generated). */
@@ -72,25 +72,25 @@ export const social = {
 } as const;
 
 export const promoBar = {
-  message: 'Ready-made uniforms in stock — add your logo with embroidery or printing.',
+  message: 'Uniforms & Malay traditional wear manufactured in Cheras — with embroidery and printing.',
   cta: { label: 'Get a quote', href: '/request-quote' },
 } as const;
 
 export type NavItem = { label: string; href: string; description?: string };
 
 export const mainNav: NavItem[] = [
-  { label: 'Ready-Made', href: '/ready-made', description: 'In-stock uniforms, add your logo' },
+  { label: 'Products', href: '/products', description: 'Uniforms, sublimation tees & traditional wear' },
   { label: 'Custom-Made', href: '/custom-made', description: 'Fabric, cut & colour made to order' },
   { label: 'Printing', href: '/printing', description: 'Silkscreen, embroidery, sublimation, DTF' },
-  { label: 'Industries', href: '/industries', description: 'Corporate, F&B, factories, schools, events' },
+  { label: 'Industries', href: '/industries', description: 'Schools, hotels, restaurants, corporate & events' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 
 /**
- * Commercial terms shown across the site.
- * [PLACEHOLDER] — indicative values taken from the design mock-up.
- * Confirm MOQs and lead times with the production team before launch.
+ * General terms shown on static pages (product-specific MOQs and lead times are
+ * edited per product in /admin).
+ * [PLACEHOLDER] — confirm these with the production team.
  */
 export const terms = {
   readyMadeMoq: 30, // pieces — [PLACEHOLDER] confirm
@@ -151,7 +151,7 @@ export type Faq = { question: string; answer: string };
 export const quoteFaqs: Faq[] = [
   {
     question: 'What is the minimum order quantity?',
-    answer: `Ready-made uniforms start from ${terms.readyMadeMoq} pieces when you add a logo. Custom-made uniforms start from ${terms.customMadeMoq} pieces per design and colour. Plain samples can be arranged — just ask.`,
+    answer: 'Each product page shows its minimum order quantity (MOQ). Sizes can be mixed within the MOQ. For custom-made designs, the MOQ is per design and colour — ask us if you need a smaller quantity.',
   },
   {
     question: 'What logo file should I send?',

@@ -1,3 +1,5 @@
+import type { SiteImageKey } from '@/lib/catalog/types';
+
 /**
  * Printing & branding methods, production streams and the ordering process.
  * MOQs / prices marked [PLACEHOLDER] are indicative — confirm before launch.
@@ -16,7 +18,8 @@ export type PrintingMethod = {
   moq: string;
   /** Indicative add-on price per piece */
   priceFrom: string;
-  image: string;
+  /** Page image slot, uploaded in /admin → Page images */
+  imageKey: SiteImageKey;
   imageAlt: string;
 };
 
@@ -32,7 +35,7 @@ export const printingMethods: PrintingMethod[] = [
     pros: ['Premium, professional look', 'Extremely durable — will not fade or peel', 'Works on most fabrics'],
     moq: '[PLACEHOLDER] e.g. 30 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM3.50 / pc',
-    image: '/images/home/embroidery-machine.jpg',
+    imageKey: 'printing-embroidery',
     imageAlt: 'Computerised embroidery machine stitching a logo onto fabric',
   },
   {
@@ -46,7 +49,7 @@ export const printingMethods: PrintingMethod[] = [
     pros: ['Lowest cost per piece in bulk', 'Bold, solid colours', 'Good wash durability'],
     moq: '[PLACEHOLDER] e.g. 50 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM2.50 / pc',
-    image: '/images/categories/t-shirts.jpg',
+    imageKey: 'printing-silkscreen',
     imageAlt: 'Screen printing a logo onto a t-shirt with a squeegee',
   },
   {
@@ -60,7 +63,7 @@ export const printingMethods: PrintingMethod[] = [
     pros: ['Unlimited colours and gradients', 'Will not crack, peel or fade', 'Soft feel — no ink layer'],
     moq: '[PLACEHOLDER] e.g. 30 pcs',
     priceFrom: '[PLACEHOLDER] quoted per design',
-    image: '/images/categories/jerseys.jpg',
+    imageKey: 'printing-sublimation',
     imageAlt: 'Brightly coloured sublimation-printed sports jersey',
   },
   {
@@ -74,7 +77,7 @@ export const printingMethods: PrintingMethod[] = [
     pros: ['Photo-quality detail', 'No colour limit', 'Fast setup for small quantities'],
     moq: '[PLACEHOLDER] e.g. 20 pcs',
     priceFrom: '[PLACEHOLDER] e.g. RM4.00 / pc',
-    image: '/images/products/f1-shirt-navy-orange.jpg',
+    imageKey: 'printing-dtf',
     imageAlt: 'Detailed full-colour DTF transfer on a uniform shirt',
   },
 ];
@@ -94,7 +97,7 @@ export type ProcessStep = { title: string; description: string };
 export const orderSteps: ProcessStep[] = [
   {
     title: 'Choose product & quantity',
-    description: 'Pick a ready-made style or tell us what you need custom-made, with your rough quantity and target date.',
+    description: 'Pick one of our designs or tell us what you need custom-made, with your rough quantity and target date.',
   },
   {
     title: 'Send your logo',
@@ -106,7 +109,7 @@ export const orderSteps: ProcessStep[] = [
   },
   {
     title: 'Production & delivery',
-    description: 'We produce and quality-check your order in Cheras, then deliver or arrange collection.',
+    description: 'We manufacture and quality-check your order in Cheras, then deliver or arrange collection.',
   },
 ];
 
@@ -139,7 +142,7 @@ export const customOptions: CustomOption[] = [
       { name: 'Combed cotton', detail: 'Soft, natural t-shirt fabric' },
       { name: 'Microfibre dri-fit', detail: 'Quick-dry for outdoor & sports' },
       { name: 'Oxford / poly-cotton', detail: 'Easy-care office shirting' },
-      { name: 'Drill / twill', detail: 'Heavy-duty workwear' },
+      { name: 'Songket, satin & crepe', detail: 'For Baju Melayu, kurung & kebaya' },
     ],
   },
   {
@@ -147,7 +150,7 @@ export const customOptions: CustomOption[] = [
     options: [
       { name: 'Ribbed polo collar', detail: 'Classic flat-knit collar' },
       { name: 'Mandarin collar', detail: 'Clean band collar, modern look' },
-      { name: 'F1 stand collar', detail: 'Sporty collar with piping' },
+      { name: 'Cekak musang / teluk belanga', detail: 'Traditional Baju Melayu necklines' },
       { name: 'Concealed placket', detail: 'Hidden buttons, neat finish' },
       { name: 'Zip placket', detail: 'Quarter-zip for field teams' },
     ],

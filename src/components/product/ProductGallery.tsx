@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import type { ProductImage } from '@/data/products';
+import type { CatalogImage } from '@/lib/catalog/types';
 
-export function ProductGallery({ images, badge }: { images: ProductImage[]; badge?: string }) {
+export function ProductGallery({ images, badge }: { images: CatalogImage[]; badge?: string }) {
   const [active, setActive] = useState(0);
   const current = images[active] ?? images[0];
 
@@ -12,8 +12,8 @@ export function ProductGallery({ images, badge }: { images: ProductImage[]; badg
     <div className="flex flex-col gap-3">
       <div className="relative aspect-[4/5] overflow-hidden rounded-panel border border-line bg-surface">
         <Image
-          key={current.src}
-          src={current.src}
+          key={current.url}
+          src={current.url}
           alt={current.alt}
           fill
           sizes="(min-width: 1024px) 45vw, 100vw"
@@ -30,7 +30,7 @@ export function ProductGallery({ images, badge }: { images: ProductImage[]; badg
       {images.length > 1 && (
         <ul className="grid grid-cols-5 gap-2" aria-label="Product images">
           {images.map((img, i) => (
-            <li key={img.src}>
+            <li key={img.url}>
               <button
                 type="button"
                 onClick={() => setActive(i)}
@@ -40,7 +40,7 @@ export function ProductGallery({ images, badge }: { images: ProductImage[]; badg
                   i === active ? 'border-orange' : 'border-transparent opacity-80 hover:opacity-100'
                 }`}
               >
-                <Image src={img.src} alt="" fill sizes="96px" className="object-cover" />
+                <Image src={img.url} alt="" fill sizes="96px" className="object-cover" />
               </button>
             </li>
           ))}

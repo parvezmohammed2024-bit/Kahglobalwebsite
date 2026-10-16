@@ -1,26 +1,14 @@
 import Link from 'next/link';
-import {
-  Building2,
-  Factory,
-  GraduationCap,
-  HeartPulse,
-  Hotel,
-  PartyPopper,
-  Truck,
-  UtensilsCrossed,
-  type LucideIcon,
-} from 'lucide-react';
+import { Building2, GraduationCap, Hotel, Moon, Trophy, UtensilsCrossed, type LucideIcon } from 'lucide-react';
 import type { Industry, IndustryIcon } from '@/data/industries';
 
 export const industryIcons: Record<IndustryIcon, LucideIcon> = {
-  building: Building2,
-  utensils: UtensilsCrossed,
-  factory: Factory,
   graduation: GraduationCap,
-  party: PartyPopper,
   hotel: Hotel,
-  health: HeartPulse,
-  truck: Truck,
+  utensils: UtensilsCrossed,
+  building: Building2,
+  trophy: Trophy,
+  moon: Moon,
 };
 
 export function IndustryCard({ industry }: { industry: Industry }) {

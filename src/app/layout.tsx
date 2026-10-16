@@ -2,13 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Manrope } from 'next/font/google';
 import { company, contact, SITE_URL, social } from '@/data/site';
 import { CORE_KEYWORDS } from '@/lib/seo';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
-import { UpdatePopup } from '@/components/layout/UpdatePopup';
-import { UpdateBar } from '@/components/layout/UpdateBar';
-import { updateBarInitScript } from '@/lib/updateNotice';
-import { POPUP_DELAY_MS, SHOW_UPDATE_POPUP } from '@/config/site';
 import { JsonLd } from '@/components/ui/JsonLd';
 import './globals.css';
 
@@ -20,9 +13,9 @@ const manrope = Manrope({
   display: 'swap',
 });
 
-const defaultTitle = 'Uniform Supplier Malaysia | Corporate Uniform Kuala Lumpur | Kah Global';
+const defaultTitle = 'Uniform Manufacturer Malaysia | School, Hotel & Corporate Uniforms | Kah Global';
 const defaultDescription =
-  'Kah Global Sdn Bhd — uniform supplier in Cheras, Kuala Lumpur since 2014. Ready-made & custom-made corporate uniforms (baju korporat), polo shirts and t-shirts with embroidery, silkscreen, sublimation & DTF printing.';
+  'Kah Global Sdn Bhd — uniform manufacturer in Cheras, Kuala Lumpur since 2014. School, hotel, restaurant and corporate uniforms, sublimation t-shirts, Baju Melayu, Baju Kurung and Malay traditional wear, with embroidery and printing.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -98,7 +91,11 @@ const localBusiness = {
   ],
   knowsAbout: [
     'Corporate uniforms',
-    'Ready-made uniforms',
+    'School uniforms',
+    'Hotel uniforms',
+    'Restaurant uniforms',
+    'Baju Melayu',
+    'Baju Kurung',
     'Custom-made uniforms',
     'Embroidery',
     'Silkscreen printing',
@@ -113,26 +110,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // suppressHydrationWarning: the update-bar script may add data-update-bar before hydration
     <html lang="en-MY" className={`${inter.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
-        <a
-          href="#main"
-          className="sr-only z-[60] rounded-control bg-navy px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-        >
-          Skip to content
-        </a>
         <JsonLd data={localBusiness} />
-        {SHOW_UPDATE_POPUP && <script dangerouslySetInnerHTML={{ __html: updateBarInitScript }} />}
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <WhatsAppFloat />
-        {SHOW_UPDATE_POPUP && (
-          <>
-            <UpdateBar />
-            <UpdatePopup delayMs={POPUP_DELAY_MS} />
-          </>
-        )}
+        {children}
       </body>
     </html>
   );

@@ -1,0 +1,282 @@
+import { PLACEHOLDER_IMAGE, type Catalog, type Category, type Product } from './types';
+
+/**
+ * Built-in catalogue used until the admin panel saves one to Vercel Blob
+ * (and as a fallback if Blob is unavailable). After the first save from
+ * /admin, the stored catalogue replaces this data.
+ *
+ * MOQs and lead times below are starting values — confirm and edit them in /admin.
+ */
+
+const img = (alt: string) => ({ url: PLACEHOLDER_IMAGE, alt });
+
+export const DEFAULT_CATEGORIES: Category[] = [
+  { slug: 'school-uniforms', name: 'School Uniforms', blurb: 'Baju sekolah, PE & house wear', image: img('School uniforms'), visible: true },
+  { slug: 'hotel-uniforms', name: 'Hotel Uniforms', blurb: 'Front office, housekeeping & F&B', image: img('Hotel staff uniforms'), visible: true },
+  { slug: 'restaurant-uniforms', name: 'Restaurant & F&B Uniforms', blurb: 'Chef jackets, crew tees & aprons', image: img('Restaurant and chef uniforms'), visible: true },
+  { slug: 'corporate-uniforms', name: 'Corporate Uniforms', blurb: 'Polos, office shirts & jackets', image: img('Corporate uniforms'), visible: true },
+  { slug: 'sublimation-tshirts', name: 'Sublimation T-Shirts', blurb: 'Full-colour jerseys & event tees', image: img('Sublimation printed t-shirts'), visible: true },
+  { slug: 'baju-melayu', name: 'Baju Melayu', blurb: 'Corporate & family Raya sets', image: img('Baju Melayu'), visible: true },
+  { slug: 'baju-kurung', name: 'Baju Kurung', blurb: 'Traditional & corporate kurung', image: img('Baju Kurung'), visible: true },
+  { slug: 'malay-mens-wear', name: 'Malay Men’s Wear', blurb: 'Samping, songkok, jubah & kurta', image: img('Malay men’s traditional wear'), visible: true },
+  { slug: 'malay-ladies-wear', name: 'Malay Ladies’ Wear', blurb: 'Kebaya, kurung moden & tudung', image: img('Malay ladies’ traditional wear'), visible: true },
+];
+
+const base = {
+  sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+  moq: 30,
+  leadTime: '2–3 weeks after approval',
+  priceFrom: null,
+  featured: false,
+  visible: true,
+} satisfies Partial<Product>;
+
+export const DEFAULT_PRODUCTS: Product[] = [
+  {
+    ...base,
+    slug: 'school-uniform-set',
+    name: 'School Uniform Set',
+    category: 'school-uniforms',
+    summary: 'Shirts, pants, skirts and pinafores made to your school’s colours and badge.',
+    description:
+      'Durable everyday school uniforms made in our Cheras facility — shirts, pants, skirts and pinafores in your school’s colours, with the school badge embroidered or printed.',
+    fabric: 'Poly-cotton / Tetron cotton',
+    colours: ['White', 'Navy', 'Green', 'Maroon', 'Grey', 'Custom'],
+    sizes: ['Kids 4–16', 'S', 'M', 'L', 'XL', '2XL'],
+    features: ['Made to your school’s colours', 'Badge embroidery or printing', 'Children’s and adult sizes', 'Hard-wearing, easy-iron fabric'],
+    addOns: ['embroidery', 'silkscreen', 'name-printing', 'custom-size', 'custom-colour'],
+    images: [img('School uniform set')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'school-pe-house-tshirt',
+    name: 'PE & House T-Shirt',
+    category: 'school-uniforms',
+    summary: 'Breathable PE and sports-house tees in house colours.',
+    description:
+      'Quick-dry PE and sports-house t-shirts for schools, printed or sublimated with house names and the school logo.',
+    fabric: 'Microfibre quick-dry',
+    colours: ['Red', 'Blue', 'Green', 'Yellow', 'Custom'],
+    sizes: ['Kids 4–16', 'S', 'M', 'L', 'XL', '2XL'],
+    features: ['Quick-dry, breathable fabric', 'House colours available', 'Logo and house name printing'],
+    addOns: ['silkscreen', 'sublimation', 'dtf', 'name-printing', 'custom-colour'],
+    images: [img('School PE and house t-shirt')],
+  },
+  {
+    ...base,
+    slug: 'hotel-front-office-uniform',
+    name: 'Hotel Front Office Uniform',
+    category: 'hotel-uniforms',
+    summary: 'Smart shirts, blouses, vests and blazers for reception and guest services.',
+    description:
+      'Polished front-of-house uniforms for hotels and resorts — shirts, blouses, vests and blazers tailored to your brand colours, with embroidered logos and name badges.',
+    fabric: 'Poly-cotton / suiting fabric',
+    colours: ['Black', 'Navy', 'Charcoal', 'Maroon', 'Custom'],
+    features: ['Tailored fit for long shifts', 'Male, female & modest cuts', 'Embroidered hotel logo'],
+    addOns: ['embroidery', 'name-printing', 'custom-size', 'custom-colour'],
+    images: [img('Hotel front office uniform')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'hotel-housekeeping-uniform',
+    name: 'Housekeeping Uniform',
+    category: 'hotel-uniforms',
+    summary: 'Comfortable, easy-wash tunics and pants for housekeeping teams.',
+    description:
+      'Practical housekeeping tunics, dresses and pants made in easy-care fabric that stands up to daily washing.',
+    fabric: 'Poly-cotton easy-care',
+    colours: ['Grey', 'Navy', 'Brown', 'Custom'],
+    features: ['Easy-wash, durable fabric', 'Practical pockets', 'Coordinated colours by department'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Hotel housekeeping uniform')],
+  },
+  {
+    ...base,
+    slug: 'chef-jacket',
+    name: 'Chef Jacket',
+    category: 'restaurant-uniforms',
+    summary: 'Double-breasted chef jackets for kitchens and central kitchens.',
+    description:
+      'Classic chef jackets in breathable fabric for hot kitchens, with your restaurant logo embroidered on the chest.',
+    fabric: 'Poly-cotton twill',
+    colours: ['White', 'Black', 'Custom'],
+    features: ['Breathable for hot kitchens', 'Long or short sleeve', 'Embroidered logo'],
+    addOns: ['embroidery', 'name-printing', 'custom-size', 'custom-colour'],
+    images: [img('Chef jacket')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'fnb-crew-tshirt-apron',
+    name: 'F&B Crew T-Shirt & Apron',
+    category: 'restaurant-uniforms',
+    summary: 'Matching crew tees, aprons and caps for cafés and restaurants.',
+    description:
+      'Complete front-of-house crew sets — t-shirts or polos with matching aprons and caps, branded with your logo.',
+    fabric: 'Cotton / canvas (aprons)',
+    colours: ['Black', 'White', 'Brown', 'Navy', 'Custom'],
+    features: ['Matching tee, apron and cap sets', 'Adjustable aprons', 'Logo printing or embroidery'],
+    addOns: ['embroidery', 'silkscreen', 'dtf', 'custom-colour'],
+    images: [img('F&B crew t-shirt and apron')],
+  },
+  {
+    ...base,
+    slug: 'corporate-polo-shirt',
+    name: 'Corporate Polo Shirt',
+    category: 'corporate-uniforms',
+    summary: 'Honeycomb or quick-dry polos with your company logo.',
+    description:
+      'Our most-requested corporate uniform — polo shirts in honeycomb piqué or quick-dry fabric, made in your brand colours with an embroidered logo.',
+    fabric: 'Honeycomb piqué / microfibre',
+    colours: ['Navy', 'Black', 'White', 'Royal Blue', 'Grey', 'Custom'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'],
+    features: ['Breathable for Malaysian weather', 'Contrast collar or piping options', 'Embroidered or printed logo'],
+    addOns: ['embroidery', 'silkscreen', 'dtf', 'name-printing', 'custom-colour'],
+    images: [img('Corporate polo shirt')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'corporate-office-shirt',
+    name: 'Corporate Office Shirt',
+    category: 'corporate-uniforms',
+    summary: 'Long and short sleeve office shirts and blouses.',
+    description:
+      'Smart office shirts and blouses for front-office, banking and management teams, with a discreet embroidered logo.',
+    fabric: 'Oxford / poly-cotton',
+    colours: ['White', 'Light Blue', 'Navy', 'Custom'],
+    features: ['Long or short sleeve', 'Male & female cuts', 'Easy-iron finish'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Corporate office shirt')],
+  },
+  {
+    ...base,
+    slug: 'sublimation-jersey',
+    name: 'Sublimation Jersey',
+    category: 'sublimation-tshirts',
+    summary: 'Full-colour, edge-to-edge jerseys for teams, clubs and companies.',
+    description:
+      'Your design is dye-sublimated into the fabric, so colours never crack or peel. Round neck or collar, for sports teams, clubs and corporate events.',
+    fabric: 'Microfibre / interlock polyester',
+    colours: ['Any design — full colour'],
+    sizes: ['Kids 4–16', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+    features: ['Unlimited colours & designs', 'Round neck or collar', 'Names and numbers included in the print'],
+    addOns: ['sublimation', 'name-printing', 'custom-size'],
+    images: [img('Sublimation jersey')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'sublimation-event-tshirt',
+    name: 'Event & Run T-Shirt',
+    category: 'sublimation-tshirts',
+    summary: 'Sublimated tees for runs, family days and campaigns.',
+    description:
+      'Lightweight quick-dry event t-shirts with all-over sublimated artwork — ideal for corporate runs, family days and launches.',
+    fabric: 'Microfibre quick-dry',
+    colours: ['Any design — full colour'],
+    features: ['All-over campaign artwork', 'Quick-dry for outdoor events', 'Cost-effective for large runs'],
+    addOns: ['sublimation', 'name-printing'],
+    images: [img('Event and run t-shirt')],
+  },
+  {
+    ...base,
+    slug: 'baju-melayu-set',
+    name: 'Baju Melayu Set',
+    category: 'baju-melayu',
+    summary: 'Cekak musang and teluk belanga sets for corporate and family Raya.',
+    description:
+      'Baju Melayu sets made to order in your choice of fabric and colour — for corporate Raya, family matching sets and events. Pair with samping and songkok.',
+    fabric: 'Cotton / Jacquard / Satin',
+    colours: ['Any colour — made to order'],
+    sizes: ['Kids', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+    features: ['Cekak musang or teluk belanga', 'Matching family and team sets', 'Custom embroidery on request'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Baju Melayu set')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'baju-kurung',
+    name: 'Baju Kurung',
+    category: 'baju-kurung',
+    summary: 'Traditional and corporate baju kurung, made to order.',
+    description:
+      'Baju kurung in traditional or modern cuts for corporate uniforms, schools and festive sets, in your choice of fabric and colour.',
+    fabric: 'Cotton / Crepe / Satin',
+    colours: ['Any colour — made to order'],
+    sizes: ['Kids', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+    features: ['Traditional or modern cut', 'Corporate and festive sets', 'Made-to-measure available'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Baju kurung')],
+    featured: true,
+  },
+  {
+    ...base,
+    slug: 'samping-songkok',
+    name: 'Samping & Songkok',
+    category: 'malay-mens-wear',
+    summary: 'Samping and songkok to complete Baju Melayu sets.',
+    description:
+      'Samping and songkok made to match your Baju Melayu — in songket-style, plain or custom colours for corporate and family sets.',
+    fabric: 'Songket-style / velvet (songkok)',
+    colours: ['Matched to your Baju Melayu'],
+    sizes: ['One size (samping)', 'Songkok by head size'],
+    features: ['Colour-matched to your sets', 'Corporate and wedding orders', 'Custom songkok sizes'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Samping and songkok')],
+  },
+  {
+    ...base,
+    slug: 'jubah-kurta',
+    name: 'Jubah & Kurta',
+    category: 'malay-mens-wear',
+    summary: 'Men’s jubah and kurta for events, Raya and corporate sets.',
+    description:
+      'Comfortable men’s jubah and kurta in breathable fabric, made to order in your choice of colour.',
+    fabric: 'Cotton / linen blend',
+    colours: ['White', 'Cream', 'Navy', 'Custom'],
+    features: ['Breathable fabric', 'Long or short kurta', 'Embroidered neckline options'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Jubah and kurta')],
+  },
+  {
+    ...base,
+    slug: 'kebaya-kurung-moden',
+    name: 'Kebaya & Kurung Moden',
+    category: 'malay-ladies-wear',
+    summary: 'Kebaya and modern kurung for corporate and festive wear.',
+    description:
+      'Elegant kebaya and kurung moden made to order for corporate events, festive sets and special occasions.',
+    fabric: 'Crepe / Satin / Lace',
+    colours: ['Any colour — made to order'],
+    features: ['Modern and classic cuts', 'Matching corporate sets', 'Made-to-measure available'],
+    addOns: ['embroidery', 'custom-size', 'custom-colour'],
+    images: [img('Kebaya and kurung moden')],
+  },
+  {
+    ...base,
+    slug: 'tudung-selendang',
+    name: 'Tudung & Selendang',
+    category: 'malay-ladies-wear',
+    summary: 'Tudung and selendang to match uniforms and festive sets.',
+    description:
+      'Tudung and selendang colour-matched to your uniforms or festive sets, with optional embroidered or printed logo.',
+    fabric: 'Chiffon / jersey / cotton',
+    colours: ['Matched to your uniform', 'Custom'],
+    sizes: ['Free size'],
+    features: ['Colour-matched to uniforms', 'Instant or bawal styles', 'Optional logo'],
+    addOns: ['embroidery', 'dtf', 'custom-colour'],
+    images: [img('Tudung and selendang')],
+  },
+];
+
+export const DEFAULT_CATALOG: Catalog = {
+  version: 1,
+  updatedAt: '1970-01-01T00:00:00.000Z',
+  categories: DEFAULT_CATEGORIES,
+  products: DEFAULT_PRODUCTS,
+  siteImages: {},
+};

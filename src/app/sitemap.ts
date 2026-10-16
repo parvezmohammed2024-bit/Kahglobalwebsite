@@ -1,12 +1,14 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/data/site';
-import { products } from '@/data/products';
+import { getCatalog } from '@/lib/catalog/store';
+import { visibleProducts } from '@/lib/catalog/query';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const catalog = await getCatalog();
   const lastModified = new Date();
   const pages: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = [
     { path: '', priority: 1, changeFrequency: 'weekly' },
-    { path: '/ready-made', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/products', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/custom-made', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/printing', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/request-quote', priority: 0.8, changeFrequency: 'monthly' },
@@ -22,8 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: p.changeFrequency,
       priority: p.priority,
     })),
-    ...products.map((p) => ({
-      url: `${SITE_URL}/ready-made/${p.slug}`,
+    ...visibleProducts(catalog).map((p) => ({
+      url: `${SITE_URL}/products/${p.slug}`,
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.7,

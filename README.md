@@ -1,8 +1,9 @@
 # Kah Global Sdn Bhd — Website
 
-Marketing site for **Kah Global Sdn Bhd** (201401008112 / 1084190-X), a uniform & apparel company in Cheras,
-Kuala Lumpur. Built with **Next.js 16 (App Router) + TypeScript + Tailwind CSS v4**, fully static and deployable to
-Vercel. The visual design comes from the Google Stitch export in [`design/stitch/`](design/stitch).
+Website for **Kah Global Sdn Bhd** (201401008112 / 1084190-X), a manufacturer of school, hotel, restaurant and
+corporate uniforms, sublimation t-shirts, Baju Melayu, Baju Kurung and Malay traditional wear in Cheras, Kuala
+Lumpur. Built with **Next.js 16 (App Router) + TypeScript + Tailwind CSS v4** on Vercel, with an admin panel at
+`/admin` for products and photos (stored in Vercel Blob). The visual design comes from the Google Stitch export in [`design/stitch/`](design/stitch).
 
 ## Quick start
 
@@ -21,47 +22,54 @@ Optional: copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` (de
 | Route | Purpose |
 | --- | --- |
 | `/` | Home |
-| `/ready-made` | Product catalogue with filters (category, fabric, GSM, colour, size, price, sort) |
-| `/ready-made/[slug]` | Product detail — gallery, price tiers, quantity estimator, specs, size chart |
+| `/products` | Product catalogue — category, add-on filters and search |
+| `/products/[slug]` | Product detail — photos, MOQ, add-ons, specs, quote / WhatsApp enquiry |
 | `/custom-made` | Custom-made uniforms |
 | `/printing` | Embroidery, silkscreen, sublimation & DTF |
 | `/industries` | Industries served |
 | `/about` | Company |
 | `/contact` | Contact details, map and enquiry form |
 | `/request-quote` | 3-step quotation wizard |
+| `/admin` | Admin panel — products, categories, page images (password protected) |
+
+Old `/ready-made` URLs redirect to `/products`.
 
 `sitemap.xml` and `robots.txt` are generated from `src/app/sitemap.ts` and `src/app/robots.ts`.
 
-## Editing content (no component changes needed)
+## Admin panel (`/admin`)
+
+Manage the catalogue without touching code:
+
+- **Products** — add, edit, delete, reorder, show/hide, feature on the home page. Each product has photos, MOQ,
+  lead time, available add-ons (embroidery, silkscreen, DTF, sublimation, name/number, custom sizing, custom
+  colour & fabric), fabric, colours, sizes, features and an optional "from RM" price (empty = price on quotation).
+- **Categories** — name, short description, photo, order and visibility.
+- **Page images** — photos for the home hero, custom-made, printing, industries and about pages.
+
+Photos are resized in the browser (max 2000px, WebP) and uploaded straight to Vercel Blob. Every save stores a new
+version of the catalogue JSON (the last 15 are kept as backups) and refreshes the public pages within seconds.
+Until Blob is connected, the site shows the built-in catalogue in `src/lib/catalog/defaults.ts`.
+
+### One-time setup in Vercel
+
+1. **Storage → Create → Blob** — choose *public* access and connect it to this project (adds `BLOB_READ_WRITE_TOKEN`).
+2. **Settings → Environment Variables** — add `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` (32+ random characters)
+   for Production (and Preview if you want to test there).
+3. **Redeploy**, then open `https://<your-domain>/admin` and log in.
+
+## Editing content in code
 
 | What | File |
 | --- | --- |
-| Company details, phone numbers, address, hours, promo bar, stats, testimonials, client logos, FAQs, MOQs & lead times | `src/data/site.ts` |
-| Products (name, slug, category, fabric, GSM, colours, sizes, price-from, bulk tiers, images) | `src/data/products.ts` |
+| Company details, phone numbers, address, hours, promo bar, stats, testimonials, client logos, FAQs | `src/data/site.ts` |
+| Default catalogue (used until the first admin save) and image slots | `src/lib/catalog/defaults.ts`, `src/lib/catalog/types.ts` |
 | Printing methods, logo positions, process steps, custom-made options | `src/data/services.ts` |
 | Industries | `src/data/industries.ts` |
+| Update popup + bottom bar switch and wording | `src/config/site.ts` |
 | Colours, fonts, radius, shadows (design tokens) | `src/app/globals.css` (`@theme`) |
 
-### Placeholders
-
-Anything not yet confirmed is marked **`[PLACEHOLDER]`** — search the project for that text and replace it before
-launch. Image slots without a photo show a neutral grey card with the logo mark — see `IMAGES.md`.
-
-The "we're updating our website" popup (shown once per visit after a short delay) is controlled by
-`SHOW_UPDATE_POPUP` and `POPUP_DELAY_MS` in `src/config/site.ts`; its wording is in the same file.
-
-### Images
-
-- Brand assets: `public/brand/` (logo mark, white logo mark, full logo), `public/og-image.jpg`, `src/app/apple-icon.png`.
-- Content images: `public/images/{home,categories,products,industries,custom}/`. Replace a file with a real photo
-  **using the same filename** and it updates everywhere. Product images are referenced in `src/data/products.ts`.
-- To fill the slots with the AI-generated mock-up photos from the Stitch export (as an interim step):
-
-  ```bash
-  node scripts/fetch-stitch-images.mjs
-  ```
-
-  The mapping lives in `scripts/stitch-images.json`. These are stand-ins — swap them for real Kah Global photos.
+Anything not yet confirmed is marked **`[PLACEHOLDER]`** — search the project for that text. Image slots without a
+photo show a neutral grey card with the logo mark (`public/images/placeholder.jpg`).
 
 ## Quote form & WhatsApp
 
@@ -90,18 +98,24 @@ The "we're updating our website" popup (shown once per visit after a short delay
 
 ```
 src/
-  app/            routes, layout, sitemap/robots, globals.css (design tokens)
+  app/
+    (site)/       public pages (home, products, custom-made, printing, industries, about, contact, request-quote)
+    admin/        admin panel: login, (panel)/ products, categories, page images, server actions
+    api/admin/    image upload token endpoint (Vercel Blob)
   components/
-    layout/       Header (promo bar + mobile drawer), Footer, WhatsAppFloat, Logo
+    layout/       Header, Footer, WhatsAppFloat, Logo, UpdatePopup, UpdateBar
     ui/           Button, Badge, SectionHeading, Breadcrumbs, FaqList, JsonLd, WhatsAppIcon
     cards/        ProductCard, CategoryCard, ServiceCard, IndustryCard, TestimonialCard
     sections/     PageHero, StatsBar, StepsTimeline, CTABanner, ClientLogos, Testimonials
-    catalog/      CatalogView (filters, drawer)
-    product/      ProductGallery, PriceTierTable, ProductOrderPanel
+    catalog/      CatalogView (filters, drawer, search)
+    product/      ProductGallery, ProductEnquiryPanel
     quote/        QuoteWizard
     contact/      ContactForm
-  data/           editable content (site, products, services, industries)
-  lib/            quote model, SEO helper, WhatsApp + formatting helpers
+    admin/        ProductList, ProductEditor, CategoriesEditor, SiteImagesEditor, ImageUploader
+  data/           site copy (site, services, industries)
+  lib/
+    catalog/      types, defaults, validation, queries, Vercel Blob storage
+    admin/        password + signed-cookie auth
+                  quote model, SEO, WhatsApp + formatting helpers
 design/stitch/    Google Stitch export (source of truth for the visual design)
-scripts/          fetch-stitch-images.mjs + stitch-images.json
 ```
