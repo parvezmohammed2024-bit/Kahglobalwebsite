@@ -23,6 +23,13 @@ export type ActionResult = { ok: true; slug?: string } | { ok: false; error: str
 export async function login(_prev: { error: string } | null, formData: FormData): Promise<{ error: string } | null> {
   const password = String(formData.get('password') ?? '');
   if (!checkPassword(password)) {
+    // TEMPORARY diagnostic (lengths only, never the values) — remove once login works.
+    console.warn('[admin] login failed', {
+      typedLength: password.trim().length,
+      savedLength: process.env.ADMIN_PASSWORD?.trim().length ?? 0,
+      savedHasOuterSpaces: process.env.ADMIN_PASSWORD !== process.env.ADMIN_PASSWORD?.trim(),
+      sessionSecretLength: process.env.ADMIN_SESSION_SECRET?.length ?? 0,
+    });
     // Slow down guessing.
     await new Promise((resolve) => setTimeout(resolve, 800));
     return { error: 'Incorrect password.' };
