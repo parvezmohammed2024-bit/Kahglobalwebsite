@@ -30,12 +30,12 @@ export const YEARS_IN_BUSINESS = CURRENT_YEAR - company.foundedYear;
 
 export const contact = {
   whatsapp: {
-    display: '011-2330 5012',
-    number: '601123305012', // international format, no "+" — used for wa.me links
+    display: '011-2615 8753',
+    number: '601126158753', // international format, no "+" — used for wa.me links
   },
   mobile: {
-    display: '013-782 4320',
-    tel: '+60137824320',
+    display: '011-2615 8753',
+    tel: '+601126158753',
   },
   office: {
     display: '03-9107 1458',
