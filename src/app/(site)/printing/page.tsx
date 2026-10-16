@@ -142,8 +142,8 @@ export default async function PrintingPage() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge tone="accent">MOQ: {m.moq}</Badge>
-                  <Badge>From: {m.priceFrom}</Badge>
+                  {m.moq && <Badge tone="accent">MOQ: {m.moq}</Badge>}
+                  <Badge>{m.priceFrom ? `From: ${m.priceFrom}` : 'Price on quotation'}</Badge>
                 </div>
                 <ButtonLink href={`/request-quote?method=${m.id}`} variant="secondary" className="self-start">
                   Quote for {m.shortName.toLowerCase()} <ArrowRight aria-hidden className="size-4" />

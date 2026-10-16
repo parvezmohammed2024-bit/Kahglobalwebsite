@@ -86,10 +86,6 @@ export default async function AboutPage() {
             Baju Kurung and Malay traditional wear — from small team orders to school- and company-wide rollouts.
           </p>
           <p className="text-ink">
-            [PLACEHOLDER] Add 2–3 sentences about how the company started, the founder(s), and what makes Kah Global
-            different (e.g. family business, number of machines, team size, notable milestones).
-          </p>
-          <p className="text-ink">
             Customers can start from <strong>our designs</strong> — made in their colours with their logo — or have
             uniforms <strong>custom-made</strong> to their own design, with fabric, cut and colour chosen to suit the job.
           </p>

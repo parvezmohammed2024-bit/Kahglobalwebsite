@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TestimonialCard } from '@/components/cards/TestimonialCard';
 
 export function Testimonials() {
+  if (testimonials.length === 0) return null;
   return (
     <section className="container-page section-y">
       <SectionHeading

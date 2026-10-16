@@ -57,7 +57,6 @@ export const contact = {
     'https://www.google.com/maps?q=Jalan+Bunga+Melur+3,+Taman+Suria+Jaya,+56000+Cheras,+Kuala+Lumpur&output=embed',
   hours: [
     { days: 'Monday – Friday', time: '8:00 AM – 5:00 PM' },
-    { days: 'Saturday', time: '[PLACEHOLDER] e.g. Closed / 9:00 AM – 1:00 PM' },
     { days: 'Sunday & Public Holidays', time: 'Closed' },
   ],
   // Used in LocalBusiness JSON-LD (schema.org openingHours format)
@@ -101,50 +100,24 @@ export const terms = {
   quoteResponse: '1 working day', // [PLACEHOLDER] confirm
 } as const;
 
-/** Headline numbers. Only "since" is confirmed; the rest are placeholders. */
+/** Headline facts. Add confirmed numbers (e.g. clients served) here when available. */
 export const stats = [
   { value: String(company.foundedYear), label: 'Established', sublabel: 'Registered in Malaysia' },
-  { value: '[PLACEHOLDER]', label: 'Clients served', sublabel: 'e.g. 500+ companies' },
-  { value: '[PLACEHOLDER]', label: 'Uniforms delivered', sublabel: 'e.g. 100,000+ pieces' },
+  { value: 'Made to order', label: 'Manufacturer', sublabel: 'Uniforms & Malay traditional wear' },
+  { value: 'Your logo', label: 'Embroidery & printing', sublabel: 'Silkscreen, sublimation & DTF' },
   { value: 'Cheras, KL', label: 'In-house production', sublabel: 'Printing & embroidery' },
 ] as const;
 
 export type Testimonial = { quote: string; name: string; role: string; company: string };
 
-/** [PLACEHOLDER] — replace with real, approved customer testimonials. */
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      '[PLACEHOLDER] Real customer quote about quality, delivery time or service. Ask a happy client for 2–3 sentences and their permission to publish.',
-    name: '[PLACEHOLDER] Customer name',
-    role: '[PLACEHOLDER] Job title',
-    company: '[PLACEHOLDER] Company, City',
-  },
-  {
-    quote:
-      '[PLACEHOLDER] Second testimonial — ideally from an F&B outlet or factory client describing their uniform order.',
-    name: '[PLACEHOLDER] Customer name',
-    role: '[PLACEHOLDER] Job title',
-    company: '[PLACEHOLDER] Company, City',
-  },
-  {
-    quote:
-      '[PLACEHOLDER] Third testimonial — ideally from a school, event organiser or corporate HR team.',
-    name: '[PLACEHOLDER] Customer name',
-    role: '[PLACEHOLDER] Job title',
-    company: '[PLACEHOLDER] Company, City',
-  },
-];
+/**
+ * Real, approved customer testimonials. The section stays hidden while this is empty.
+ * Example: { quote: '…', name: 'Aisyah', role: 'HR Manager', company: 'Company, City' }
+ */
+export const testimonials: Testimonial[] = [];
 
-/** [PLACEHOLDER] — client names/logos. Only list clients who have agreed to be shown. */
-export const clientLogos: { name: string; logo?: string }[] = [
-  { name: '[PLACEHOLDER] Client 1' },
-  { name: '[PLACEHOLDER] Client 2' },
-  { name: '[PLACEHOLDER] Client 3' },
-  { name: '[PLACEHOLDER] Client 4' },
-  { name: '[PLACEHOLDER] Client 5' },
-  { name: '[PLACEHOLDER] Client 6' },
-];
+/** Client names/logos, e.g. { name: 'ABC Hotel', logo: '/clients/abc.png' }. Only list clients who agreed to be shown. */
+export const clientLogos: { name: string; logo?: string }[] = [];
 
 export type Faq = { question: string; answer: string };
 

@@ -76,7 +76,7 @@ const tiers = [
     description: 'For company-wide rollouts, multiple branches and repeat orders.',
     rows: [
       ['Quantity', '300+ pieces'],
-      ['Lead time', '[PLACEHOLDER] confirm per order'],
+      ['Lead time', 'Planned with you per order'],
       ['Delivery', 'Split by branch on request'],
     ],
   },

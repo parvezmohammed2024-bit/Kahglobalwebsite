@@ -2,7 +2,7 @@ import type { SiteImageKey } from '@/lib/catalog/types';
 
 /**
  * Printing & branding methods, production streams and the ordering process.
- * MOQs / prices marked [PLACEHOLDER] are indicative — confirm before launch.
+ * Add `moq` / `priceFrom` to a method once confirmed; otherwise the page shows "Price on quotation".
  */
 
 export type PrintingMethodId = 'embroidery' | 'silkscreen' | 'sublimation' | 'dtf';
@@ -15,9 +15,10 @@ export type PrintingMethod = {
   description: string;
   bestFor: string[];
   pros: string[];
-  moq: string;
-  /** Indicative add-on price per piece */
-  priceFrom: string;
+  /** Optional, e.g. '30 pcs' — badge hidden when not set */
+  moq?: string;
+  /** Optional indicative add-on price, e.g. 'RM3.50 / pc' — shows "Price on quotation" when not set */
+  priceFrom?: string;
   /** Page image slot, uploaded in /admin → Page images */
   imageKey: SiteImageKey;
   imageAlt: string;
@@ -33,8 +34,6 @@ export const printingMethods: PrintingMethod[] = [
       'Your logo is digitised and stitched directly into the fabric with computerised multi-head embroidery machines. It gives a raised, premium finish that outlasts the garment itself — the classic choice for corporate polos, shirts, caps and jackets.',
     bestFor: ['Corporate polos & shirts', 'Caps & jackets', 'Left chest and sleeve logos'],
     pros: ['Premium, professional look', 'Extremely durable — will not fade or peel', 'Works on most fabrics'],
-    moq: '[PLACEHOLDER] e.g. 30 pcs',
-    priceFrom: '[PLACEHOLDER] e.g. RM3.50 / pc',
     imageKey: 'printing-embroidery',
     imageAlt: 'Computerised embroidery machine stitching a logo onto fabric',
   },
@@ -47,8 +46,6 @@ export const printingMethods: PrintingMethod[] = [
       'Ink is pushed through a fine mesh screen, one colour at a time. Silkscreen gives bold, solid colours and becomes very economical as quantities grow — ideal for event tees and large staff orders with simple 1–3 colour logos.',
     bestFor: ['Event & campaign t-shirts', 'Large staff orders', 'Simple 1–3 colour logos'],
     pros: ['Lowest cost per piece in bulk', 'Bold, solid colours', 'Good wash durability'],
-    moq: '[PLACEHOLDER] e.g. 50 pcs',
-    priceFrom: '[PLACEHOLDER] e.g. RM2.50 / pc',
     imageKey: 'printing-silkscreen',
     imageAlt: 'Screen printing a logo onto a t-shirt with a squeegee',
   },
@@ -61,8 +58,6 @@ export const printingMethods: PrintingMethod[] = [
       'Your design is printed onto transfer paper and heat-pressed so the ink turns to gas and bonds with polyester fibres. The print becomes part of the fabric — it cannot crack or peel — and allows unlimited colours across the whole garment.',
     bestFor: ['Sports & club jerseys', 'Corporate run tees', 'All-over patterns and gradients'],
     pros: ['Unlimited colours and gradients', 'Will not crack, peel or fade', 'Soft feel — no ink layer'],
-    moq: '[PLACEHOLDER] e.g. 30 pcs',
-    priceFrom: '[PLACEHOLDER] quoted per design',
     imageKey: 'printing-sublimation',
     imageAlt: 'Brightly coloured sublimation-printed sports jersey',
   },
@@ -75,8 +70,6 @@ export const printingMethods: PrintingMethod[] = [
       'Designs are printed onto film, coated with adhesive powder and heat-pressed onto the garment. DTF reproduces fine detail and photo-quality gradients on cotton, polyester and blends — perfect for complex logos and smaller runs.',
     bestFor: ['Complex, multi-colour logos', 'Small to medium runs', 'Cotton, polyester & blends'],
     pros: ['Photo-quality detail', 'No colour limit', 'Fast setup for small quantities'],
-    moq: '[PLACEHOLDER] e.g. 20 pcs',
-    priceFrom: '[PLACEHOLDER] e.g. RM4.00 / pc',
     imageKey: 'printing-dtf',
     imageAlt: 'Detailed full-colour DTF transfer on a uniform shirt',
   },
