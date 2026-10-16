@@ -31,8 +31,10 @@ function safeEqual(a: string, b: string): boolean {
   return ab.length === bb.length && timingSafeEqual(ab, bb);
 }
 
-export function checkPassword(input: string): boolean {
-  const expected = process.env.ADMIN_PASSWORD;
+export function checkPassword(rawInput: string): boolean {
+  // Ignore stray spaces/new lines from typing or copy-paste (in the form and in the env value).
+  const input = rawInput.trim();
+  const expected = process.env.ADMIN_PASSWORD?.trim();
   if (!expected || !secret()) return false;
   // Compare HMACs so lengths always match and timing does not leak.
   const key = secret() as string;
