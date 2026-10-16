@@ -98,7 +98,11 @@ export default async function RequestQuotePage() {
               <span className="text-muted">{contact.office.display}</span>
             </a>
             <p className="text-xs text-muted">
-              {contact.hours[0].days}: {contact.hours[0].time}
+              {contact.hours.slice(0, 2).map((h) => (
+                <span key={h.days} className="block">
+                  {h.days}: {h.time}
+                </span>
+              ))}
             </p>
           </div>
         </aside>

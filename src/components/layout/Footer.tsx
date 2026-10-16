@@ -8,6 +8,8 @@ import { whatsappUrl, DEFAULT_WHATSAPP_MESSAGE } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { Logo } from './Logo';
 
+const SOCIAL_LABELS: Record<string, string> = { facebook: 'Facebook', instagram: 'Instagram', tiktok: 'TikTok' };
+
 export async function Footer() {
   const categories = visibleCategories(await getCatalog());
   const socials = Object.entries(social).filter(([, url]) => url);
@@ -29,8 +31,12 @@ export async function Footer() {
             </li>
             <li className="flex gap-3">
               <Clock aria-hidden className="mt-0.5 size-4 shrink-0 text-orange" />
-              <span>
-                {contact.hours[0].days}: {contact.hours[0].time}
+              <span className="flex flex-col gap-0.5">
+                {contact.hours.map((h) => (
+                  <span key={h.days}>
+                    {h.days}: {h.time}
+                  </span>
+                ))}
               </span>
             </li>
           </ul>
@@ -121,8 +127,8 @@ export async function Footer() {
             <ul className="mt-5 flex gap-3 text-sm">
               {socials.map(([name, url]) => (
                 <li key={name}>
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="capitalize hover:text-white">
-                    {name}
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                    {SOCIAL_LABELS[name] ?? name}
                   </a>
                 </li>
               ))}

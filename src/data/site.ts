@@ -57,17 +57,18 @@ export const contact = {
     'https://www.google.com/maps?q=Jalan+Bunga+Melur+3,+Taman+Suria+Jaya,+56000+Cheras,+Kuala+Lumpur&output=embed',
   hours: [
     { days: 'Monday – Friday', time: '8:00 AM – 5:00 PM' },
+    { days: 'Saturday', time: '9:00 AM – 8:00 PM' },
     { days: 'Sunday & Public Holidays', time: 'Closed' },
   ],
   // Used in LocalBusiness JSON-LD (schema.org openingHours format)
-  openingHoursSchema: ['Mo-Fr 08:00-17:00'],
+  openingHoursSchema: ['Mo-Fr 08:00-17:00', 'Sa 09:00-20:00'],
 } as const;
 
 /** Social profiles — leave empty to hide the icon. */
 export const social = {
-  facebook: '', // [PLACEHOLDER] e.g. https://facebook.com/kahglobal
-  instagram: '', // [PLACEHOLDER] e.g. https://instagram.com/kahglobal
-  tiktok: '', // [PLACEHOLDER]
+  facebook: 'https://www.facebook.com/kahglobalsdn',
+  instagram: 'https://www.instagram.com/sales.kahglobal/',
+  tiktok: 'https://www.tiktok.com/@kahglobalsdnbhd1',
 } as const;
 
 export const promoBar = {
@@ -100,11 +101,11 @@ export const terms = {
   quoteResponse: '1 working day', // [PLACEHOLDER] confirm
 } as const;
 
-/** Headline facts. Add confirmed numbers (e.g. clients served) here when available. */
+/** Headline facts shown on the home and about pages. */
 export const stats = [
   { value: String(company.foundedYear), label: 'Established', sublabel: 'Registered in Malaysia' },
+  { value: '178+', label: 'Clients served', sublabel: 'Schools, hotels, restaurants & companies' },
   { value: 'Made to order', label: 'Manufacturer', sublabel: 'Uniforms & Malay traditional wear' },
-  { value: 'Your logo', label: 'Embroidery & printing', sublabel: 'Silkscreen, sublimation & DTF' },
   { value: 'Cheras, KL', label: 'In-house production', sublabel: 'Printing & embroidery' },
 ] as const;
 
@@ -137,9 +138,9 @@ export const quoteFaqs: Faq[] = [
       'Yes. We can prepare a digital mock-up of your logo on the garment, and a physical sample for custom-made orders before bulk production starts.',
   },
   {
-    question: 'How do payment terms work?',
+    question: 'How can I pay?',
     answer:
-      '[PLACEHOLDER] Describe your payment terms, e.g. deposit on confirmation and balance before delivery.',
+      'We accept bank transfer, DuitNow, online transfer and cash on delivery (COD). Payment details are included with your quotation.',
   },
   {
     question: 'Do you deliver outside Kuala Lumpur?',
